@@ -1,0 +1,10 @@
+# robots.txt for Leaving Egypt
+# Replace the Sitemap URL below with your real domain before launch.
+
+User-agent: *
+Allow: /
+
+# Utility pages are intentionally not indexed via <meta robots> tags:
+#   /thank-you.html  /404.html
+
+Sitemap: https://leavingegypt.example.com/sitemap.xml
