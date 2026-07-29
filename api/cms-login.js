@@ -15,11 +15,18 @@ export default async function handler(req, res) {
     const body = await readBody(req);
     const result = checkPassword(body.password);
     if (!result.ok) {
-      return json(res, result.status, { error: result.error, code: result.code });
+      return json(res, result.status, {
+        error: result.error,
+        code: result.code,
+        debug: result.debug,
+      });
     }
     return json(res, 200, { ok: true });
   } catch (err) {
     console.error('cms-login', err);
-    return json(res, 500, { error: 'Login failed unexpectedly.', code: 'UNEXPECTED' });
+    return json(res, 500, {
+      error: 'Login failed unexpectedly: ' + (err?.message || 'unknown'),
+      code: 'UNEXPECTED',
+    });
   }
 }
