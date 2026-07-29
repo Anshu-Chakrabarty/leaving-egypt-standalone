@@ -225,23 +225,53 @@ loginForm.addEventListener('submit', async (event) => {
   const btn = loginForm.querySelector('button');
   btn.disabled = true;
   btn.textContent = 'Signing in…';
+
+  console.log('[CMS login] start', {
+    passwordLength: value.length,
+    url: '/api/cms-login',
+  });
+
   try {
     const res = await fetch('/api/cms-login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ password: value }),
     });
-    const data = await res.json().catch(() => ({}));
+
+    const rawText = await res.text();
+    let data = {};
+    try {
+      data = rawText ? JSON.parse(rawText) : {};
+    } catch (parseErr) {
+      console.error('[CMS login] response was not JSON', {
+        status: res.status,
+        rawText,
+        parseErr,
+      });
+      showLoginError('Unexpected server response. Check console.');
+      return;
+    }
+
+    console.log('[CMS login] response', {
+      status: res.status,
+      ok: res.ok,
+      data,
+    });
+
     if (!res.ok) {
+      console.error('[CMS login] failed', data);
       showLoginError(data.error || 'Wrong password.');
       return;
     }
+
     password = value;
     sessionStorage.setItem(PASS_KEY, password);
+    console.log('[CMS login] success — opening editor');
     showApp();
     setStatus('Signed in');
-  } catch {
-    showLoginError('Network error. Try again.');
+  } catch (err) {
+    console.error('[CMS login] network/exception', err);
+    showLoginError('Network error. Try again. (See console)');
   } finally {
     btn.disabled = false;
     btn.textContent = 'Sign in';
