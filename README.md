@@ -26,24 +26,24 @@ Anyone with GitHub access to this repo can edit content at **`/admin`**:
 
 Saving in the CMS commits to GitHub → Vercel rebuilds → the live site updates.
 
-### First-time CMS login (GitHub)
+### First-time CMS login
 
-**Option A — Team login (Login with GitHub)** — one-time setup:
+Open **https://leaving-egypt-standalone.vercel.app/admin/**
 
-1. Create a GitHub OAuth App: https://github.com/settings/applications/new  
-   - **Application name:** `Leaving Egypt CMS`  
-   - **Homepage URL:** `https://leaving-egypt-standalone.vercel.app`  
-   - **Authorization callback URL:** `https://leaving-egypt-standalone.vercel.app/api/callback`
-2. Generate a **Client Secret**, then in Vercel → Project → **Settings → Environment Variables** add:
-   - `GITHUB_CLIENT_ID` = Client ID  
-   - `GITHUB_CLIENT_SECRET` = Client Secret  
-   - `ALLOWED_DOMAINS` = `leaving-egypt-standalone.vercel.app` (add your custom domain later, comma-separated)
-3. Redeploy the Vercel project (Deployments → … → Redeploy).
-4. Open `/admin` → **Login with GitHub**.
+**Works immediately — paste a GitHub token**
 
-Invite teammates as **repo collaborators** so they can publish.
+1. Create a fine-grained PAT: https://github.com/settings/personal-access-tokens  
+   - Repository: `leaving-egypt-standalone`  
+   - Permission: **Contents → Read and write**
+2. On `/admin`, paste the token under **Or paste a GitHub token** → Sign in.
 
-**Option B — Quick solo login:** on `/admin`, use **Sign in with Token** and a GitHub [Personal Access Token](https://github.com/settings/tokens) with `repo` scope.
+**Team password (optional)**
+
+1. Create the same kind of PAT as above.
+2. In Vercel → Project → Settings → Environment Variables:
+   - `CMS_PASSWORD` = the shared password your editors will type  
+   - `CMS_GITHUB_TOKEN` = the PAT  
+3. Redeploy, then editors only need the password on `/admin`.
 
 ### Local CMS (no GitHub auth)
 

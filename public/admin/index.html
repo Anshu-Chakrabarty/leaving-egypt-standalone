@@ -6,10 +6,243 @@
     <meta name="robots" content="noindex" />
     <title>Content Admin | Leaving Egypt</title>
     <style>
-      body { margin: 0; font-family: system-ui, sans-serif; }
+      :root {
+        --ink: #14110e;
+        --soil: #2a2118;
+        --sand: #f3ebe0;
+        --bronze: #b08d57;
+        --line: #d9cfc2;
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: "Libre Franklin", system-ui, sans-serif;
+        background:
+          radial-gradient(ellipse at top, #fff8ef 0%, var(--sand) 55%, #e8dccb 100%);
+        color: var(--ink);
+      }
+      .gate {
+        max-width: 420px;
+        margin: 0 auto;
+        padding: 3rem 1.25rem;
+      }
+      .brand {
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 1.75rem;
+        margin: 0 0 0.35rem;
+      }
+      .sub { color: #5c5248; margin: 0 0 1.75rem; line-height: 1.45; }
+      .card {
+        background: #fffdf9;
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        padding: 1.25rem;
+        margin-bottom: 1rem;
+      }
+      .card h2 {
+        margin: 0 0 0.75rem;
+        font-size: 1rem;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+      label { display: block; font-size: 0.9rem; margin-bottom: 0.35rem; }
+      input {
+        width: 100%;
+        padding: 0.75rem 0.85rem;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        font: inherit;
+        margin-bottom: 0.85rem;
+        background: #fff;
+      }
+      button {
+        width: 100%;
+        border: 0;
+        border-radius: 8px;
+        padding: 0.8rem 1rem;
+        font: inherit;
+        font-weight: 600;
+        cursor: pointer;
+        background: var(--soil);
+        color: #fff;
+      }
+      button.secondary {
+        background: transparent;
+        color: var(--soil);
+        border: 1px solid var(--line);
+        margin-top: 0.5rem;
+      }
+      .err {
+        color: #8b1e1e;
+        background: #fdecec;
+        border: 1px solid #f0c2c2;
+        border-radius: 8px;
+        padding: 0.65rem 0.75rem;
+        margin-bottom: 0.85rem;
+        font-size: 0.92rem;
+        display: none;
+      }
+      .err.show { display: block; }
+      .hint { font-size: 0.85rem; color: #6a5f54; line-height: 1.4; margin: 0.75rem 0 0; }
+      .hint a { color: var(--bronze); }
+      #cms-root { display: none; min-height: 100vh; }
+      body.cms-ready .gate { display: none; }
+      body.cms-ready #cms-root { display: block; }
     </style>
   </head>
   <body>
-    <script src="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js" type="module"></script>
+    <div class="gate" id="gate">
+      <p class="brand">Leaving Egypt</p>
+      <p class="sub">Content admin — sign in to edit the website.</p>
+
+      <div class="card" id="password-card">
+        <h2>Password login</h2>
+        <div class="err" id="pw-err"></div>
+        <form id="pw-form">
+          <label for="password">Editor password</label>
+          <input id="password" name="password" type="password" autocomplete="current-password" required />
+          <button type="submit">Sign in</button>
+        </form>
+        <p class="hint">
+          Shared password for your team. Set once in Vercel as <code>CMS_PASSWORD</code> + <code>CMS_GITHUB_TOKEN</code>.
+        </p>
+      </div>
+
+      <div class="card">
+        <h2>Or paste a GitHub token</h2>
+        <div class="err" id="tok-err"></div>
+        <form id="tok-form">
+          <label for="token">Personal access token</label>
+          <input id="token" name="token" type="password" autocomplete="off" placeholder="github_pat_… or ghp_…" required />
+          <button type="submit">Sign in with token</button>
+        </form>
+        <p class="hint">
+          Create a token (repo access) here:
+          <a href="https://github.com/settings/personal-access-tokens" target="_blank" rel="noopener">GitHub → Fine-grained tokens</a>
+          · Resource owner: your account · Repository: <strong>leaving-egypt-standalone</strong> · Permissions: Contents Read and write.
+        </p>
+        <button type="button" class="secondary" id="signout" hidden>Sign out saved session</button>
+      </div>
+    </div>
+
+    <div id="cms-root"></div>
+
+    <script>
+      const USER_KEY = 'sveltia-cms.user';
+
+      function showError(id, message) {
+        const el = document.getElementById(id);
+        el.textContent = message;
+        el.classList.add('show');
+      }
+
+      function clearError(id) {
+        const el = document.getElementById(id);
+        el.textContent = '';
+        el.classList.remove('show');
+      }
+
+      async function saveSessionAndLoadCms(token) {
+        const user = {
+          backendName: 'github',
+          token,
+        };
+        localStorage.setItem(USER_KEY, JSON.stringify(user));
+        await loadCms();
+      }
+
+      async function loadCms() {
+        document.body.classList.add('cms-ready');
+        if (window.__CMS_LOADED) {
+          location.reload();
+          return;
+        }
+        window.__CMS_LOADED = true;
+        const script = document.createElement('script');
+        script.src = 'https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js';
+        script.type = 'module';
+        document.body.appendChild(script);
+      }
+
+      async function tryExistingSession() {
+        try {
+          const raw = localStorage.getItem(USER_KEY);
+          if (!raw) return false;
+          const user = JSON.parse(raw);
+          if (user?.backendName === 'github' && typeof user.token === 'string' && user.token.length > 10) {
+            await loadCms();
+            return true;
+          }
+        } catch {
+          /* ignore */
+        }
+        return false;
+      }
+
+      document.getElementById('pw-form').addEventListener('submit', async (event) => {
+        event.preventDefault();
+        clearError('pw-err');
+        const password = document.getElementById('password').value;
+        const btn = event.target.querySelector('button');
+        btn.disabled = true;
+        btn.textContent = 'Signing in…';
+        try {
+          const res = await fetch('/api/cms-login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ password }),
+          });
+          const data = await res.json().catch(() => ({}));
+          if (!res.ok) {
+            showError('pw-err', data.error || 'Login failed.');
+            return;
+          }
+          await saveSessionAndLoadCms(data.token);
+        } catch {
+          showError('pw-err', 'Network error. Try again.');
+        } finally {
+          btn.disabled = false;
+          btn.textContent = 'Sign in';
+        }
+      });
+
+      document.getElementById('tok-form').addEventListener('submit', async (event) => {
+        event.preventDefault();
+        clearError('tok-err');
+        const token = document.getElementById('token').value.trim();
+        if (!token) {
+          showError('tok-err', 'Paste a token first.');
+          return;
+        }
+        // Quick sanity check against GitHub
+        try {
+          const res = await fetch('https://api.github.com/repos/Anshu-Chakrabarty/leaving-egypt-standalone', {
+            headers: {
+              Authorization: 'Bearer ' + token,
+              Accept: 'application/vnd.github+json',
+            },
+          });
+          if (!res.ok) {
+            showError('tok-err', 'Token cannot access this repo. Check permissions and try again.');
+            return;
+          }
+          await saveSessionAndLoadCms(token);
+        } catch {
+          showError('tok-err', 'Could not verify token. Check your connection.');
+        }
+      });
+
+      document.getElementById('signout').addEventListener('click', () => {
+        localStorage.removeItem(USER_KEY);
+        localStorage.removeItem('decap-cms-user');
+        localStorage.removeItem('netlify-cms-user');
+        location.reload();
+      });
+
+      tryExistingSession().then((ok) => {
+        if (!ok) document.getElementById('signout').hidden = false;
+      });
+    </script>
   </body>
 </html>
