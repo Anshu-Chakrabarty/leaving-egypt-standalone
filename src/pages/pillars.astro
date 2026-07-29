@@ -1,12 +1,133 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
 import meta from '../content/pages/pillars.json';
-import bodyRaw from '../content/bodies/pillars.md?raw';
-import { stripFrontmatter } from '../lib/content';
+import copy from '../content/copy/pillars.json';
+import { paragraphsToHtml } from '../lib/plainText';
 
-const body = stripFrontmatter(bodyRaw);
+const pillars = [
+  {
+    id: 'faith',
+    label: 'Faith',
+    sectionClass: 'section',
+    icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z" stroke-linejoin="round"/></svg>',
+    content: copy.faith,
+  },
+  {
+    id: 'family',
+    label: 'Family',
+    sectionClass: 'section section--sand',
+    icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 11l8-7 8 7" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 10v9h12v-9" stroke-linejoin="round"/></svg>',
+    content: copy.family,
+  },
+  {
+    id: 'fitness',
+    label: 'Fitness',
+    sectionClass: 'section',
+    icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 19C5 11 11 5 19 5c0 8-6 14-14 14z" stroke-linejoin="round"/><path d="M9 15c2-3 4-5 8-7" stroke-linecap="round"/></svg>',
+    content: copy.fitness,
+  },
+  {
+    id: 'finance',
+    label: 'Finance',
+    sectionClass: 'section section--sand',
+    icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><ellipse cx="12" cy="6" rx="7" ry="3"/><path d="M5 6v6c0 1.7 3.1 3 7 3s7-1.3 7-3V6"/><path d="M5 12v6c0 1.7 3.1 3 7 3s7-1.3 7-3v-6"/></svg>',
+    content: copy.finance,
+  },
+];
 ---
 
 <BaseLayout title={meta.title} description={meta.description} path={meta.path}>
-  <main id="main" set:html={body} />
+  <main id="main">
+    <PageHero
+      crumb="The Four Pillars"
+      eyebrow={copy.hero.eyebrow}
+      title={copy.hero.title}
+      lede={copy.hero.lede}
+    />
+
+    <section class="section" aria-labelledby="intro-h">
+      <div class="wrap--narrow" data-reveal>
+        <p class="eyebrow">{copy.intro.eyebrow}</p>
+        <h2 id="intro-h">{copy.intro.title}</h2>
+        <div class="mt-1 muted" set:html={paragraphsToHtml(copy.intro.body)} />
+        <nav class="btn-row mt-2" aria-label="Jump to a pillar">
+          {pillars.map((pillar) => (
+            <a class="btn btn--ghost" href={`#${pillar.id}`}>{pillar.label}</a>
+          ))}
+        </nav>
+      </div>
+    </section>
+
+    {pillars.map((pillar) => (
+      <section class={pillar.sectionClass} id={pillar.id} aria-labelledby={`${pillar.id}-h`}>
+        <div class="wrap">
+          <div class="section-head" data-reveal>
+            <div
+              class="card__icon pillar-card"
+              data-pillar={pillar.id}
+              style="border:0;padding:0;box-shadow:none;background:none;width:52px;height:52px"
+              set:html={pillar.icon}
+            />
+            <p class="eyebrow">{pillar.content.eyebrow}</p>
+            <h2 id={`${pillar.id}-h`}>{pillar.content.title}</h2>
+          </div>
+          <div class="split" style="align-items:start">
+            <div class="stack" data-reveal>
+              <div>
+                <h3 style="font-size:var(--step-1)">Why it matters</h3>
+                <p class="muted">{pillar.content.why}</p>
+              </div>
+              <div>
+                <h3 style="font-size:var(--step-1)">Common struggles men face</h3>
+                <ul class="muted" style="padding-left:1.2rem">
+                  {pillar.content.struggles.map((item) => <li>{item}</li>)}
+                </ul>
+              </div>
+              <div>
+                <h3 style="font-size:var(--step-1)">What intentional growth may involve</h3>
+                <ul class="muted" style="padding-left:1.2rem">
+                  {pillar.content.growth.map((item) => <li>{item}</li>)}
+                </ul>
+              </div>
+            </div>
+            <div class="stack" data-reveal>
+              <div class="reflection" style="margin-top:0">
+                <h4>A few practical steps</h4>
+                <ul class="recognize" style="grid-template-columns:1fr;gap:0.6rem;margin-top:0.6rem">
+                  {pillar.content.steps.map((step) => (
+                    <li>
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6L9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>{step}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <blockquote>&ldquo;{pillar.content.verse.text}&rdquo;<cite>{pillar.content.verse.citation}</cite></blockquote>
+              <div class="reflection">
+                <h4>Reflect</h4>
+                <ul>
+                  {pillar.content.reflect.map((question) => <li>{question}</li>)}
+                </ul>
+              </div>
+              <p>
+                <a class="arrow-link" href="/contact#interest">{pillar.content.cta} <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    ))}
+
+    <section class="cta-band" aria-labelledby="pcta-h">
+      <div class="cta-band__sky" aria-hidden="true"></div>
+      <div class="wrap--narrow cta-band__inner" data-reveal>
+        <p class="eyebrow eyebrow--center">{copy.finalCta.eyebrow}</p>
+        <h2 id="pcta-h">{copy.finalCta.title}</h2>
+        <p class="lede">{copy.finalCta.lede}</p>
+        <div class="btn-row btn-row--center">
+          <a class="btn btn--primary" href="/contact#interest">{copy.finalCta.cta}</a>
+        </div>
+      </div>
+    </section>
+  </main>
 </BaseLayout>

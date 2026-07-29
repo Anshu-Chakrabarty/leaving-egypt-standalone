@@ -1,0 +1,120 @@
+{
+  "title": "About Leaving Egypt — Our Mission, Vision & Values",
+  "hero": {
+    "eyebrow": "About Leaving Egypt",
+    "title": "Every man leaves something behind to become who God made him to be.",
+    "lede": "The name says it plainly. Egypt is where God's people were held. Leaving it meant trusting Him enough to walk toward freedom—one step at a time."
+  },
+  "represent": {
+    "eyebrow": "What we represent",
+    "title": "A brotherhood, not a program you graduate from",
+    "body": "Leaving Egypt is a Christ-centered men's organization. We exist for men who sense there is more to their faith, their families, and their lives than what they're living right now—and who are willing to do the honest work to get there.\n\nWe're not a church, and we're not here to replace one. We're a brotherhood that comes alongside men: teaching Scripture plainly, building real friendships, and turning good intentions into steady action across Faith, Family, Fitness, and Finance."
+  },
+  "missionVision": {
+    "mission": {
+      "eyebrow": "Mission",
+      "title": "Why we exist",
+      "body": "To help men leave behind the bondage of their past and step into the freedom, purpose, and identity God has called them to—becoming stronger husbands, fathers, leaders, and followers of Christ. In short: to help men stop surviving and start living the life God designed."
+    },
+    "vision": {
+      "eyebrow": "Vision",
+      "title": "Where we're headed",
+      "body": "A generation of men who are grounded in Christ, present at home, honest in community, disciplined in body, and trustworthy with what they've been given—men whose everyday lives quietly reflect the freedom they've found."
+    }
+  },
+  "problem": {
+    "eyebrow": "The problem we address",
+    "title": "Many men are stuck and don't know how to say so",
+    "body": "A lot of men are getting by. They provide, they show up, they keep the plates spinning. But underneath, there's regret they haven't dealt with, faith that feels distant, bodies worn down, and relationships running on autopilot.\n\nThey rarely say any of this out loud, because they've been taught that a strong man handles it himself. Leaving Egypt exists to break that silence—to give men a place to be honest and a path forward that doesn't leave them alone."
+  },
+  "exodus": {
+    "eyebrow": "Why the Exodus metaphor",
+    "title": "Freedom was a journey, not a moment",
+    "lede": "In the story of the Exodus, God led His people out of slavery—but leaving Egypt was only the beginning. The harder work was letting go of the old mindset they'd carried with them.",
+    "body": "That's a picture many men recognize. It's one thing to walk away from an old habit or a hard season. It's another to stop living as though you're still there. Leaving Egypt is about both: the leaving, and the long walk of learning to live free. We use this picture with respect for the Scripture it comes from—not as costume or spectacle, but as a true map of the road men are on."
+  },
+  "freedom": {
+    "eyebrow": "What Christ-centered freedom means",
+    "title": "Freedom to become, not just freedom from",
+    "body": "Freedom in Christ isn't only escaping what held you—it's being freed for something: to love your family well, to work with integrity, to care for your health, and to walk closely with God. It doesn't mean life stops being hard. It means you no longer face it as a slave to your past, your fear, or your own strength."
+  },
+  "values": {
+    "eyebrow": "Core values",
+    "title": "What guides us",
+    "lede": "Seven commitments that shape how we treat God, each other, and ourselves.",
+    "items": [
+      {
+        "title": "Christ Before Self",
+        "body": "We start with Jesus, not with our own strength. Every part of this journey points back to Him—who He is, and who He says we are."
+      },
+      {
+        "title": "Truth with Grace",
+        "body": "We tell each other the truth, and we do it with kindness. Honesty without grace wounds; grace without honesty enables. We aim for both."
+      },
+      {
+        "title": "Brotherhood over Isolation",
+        "body": "Men were not made to carry life alone. We choose real friendship—being known, and knowing others—over quiet isolation."
+      },
+      {
+        "title": "Responsibility over Excuses",
+        "body": "We own our choices instead of explaining them away. Taking responsibility is not shame; it's the doorway to change."
+      },
+      {
+        "title": "Progress through Practice",
+        "body": "Growth comes from small, repeated steps, not one dramatic moment. We value consistency over intensity."
+      },
+      {
+        "title": "Integrity in Every Area",
+        "body": "Who we are in private and in public should match. We pursue the same honesty at home, at work, and with our money."
+      },
+      {
+        "title": "Service through Leadership",
+        "body": "Leading means serving—putting others' good ahead of our comfort, the way Christ led us."
+      }
+    ]
+  },
+  "serve": {
+    "who": {
+      "eyebrow": "Who we serve",
+      "title": "Men from every walk of life",
+      "body": "Married and single. New believers and lifelong churchgoers. Men who feel far from God and men who simply feel worn down. You don't need a title, a testimony, or a certain income to belong here—just a willingness to be honest and take a step."
+    },
+    "approach": {
+      "eyebrow": "What makes our approach different",
+      "title": "Honest, practical, and shared",
+      "body": "We don't trade in hype or shame. We pair biblical truth with practical steps, and we do it in the company of other men. No performance, no pretending—just steady growth walked out together."
+    }
+  },
+  "leadership": {
+    "eyebrow": "Leadership",
+    "title": "The men who guide this work",
+    "lede": "Leaving Egypt is led by men committed to living what they teach. Full leadership details will be published once confirmed.",
+    "people": [
+      {
+        "name": "[FOUNDER NAME]",
+        "nameFlag": "Founder name",
+        "bio": "A short, client-approved biography will go here once provided.",
+        "bioFlag": "Leadership bio"
+      },
+      {
+        "name": "[LEADERSHIP NAME]",
+        "nameFlag": "Leader name",
+        "bio": "Role and background to be confirmed by the organization.",
+        "bioFlag": "Leadership bio"
+      },
+      {
+        "name": "[LEADERSHIP NAME]",
+        "nameFlag": "Leader name",
+        "bio": "Role and background to be confirmed by the organization.",
+        "bioFlag": "Leadership bio"
+      }
+    ],
+    "note": "Spiritual growth doesn't erase hardship, and Leaving Egypt is not a substitute for a local church. We walk with men; we point them to Christ and to their church family."
+  },
+  "finalCta": {
+    "eyebrow": "Ready when you are",
+    "title": "Take an honest first step",
+    "lede": "Tell us where you'd like to grow. We'll take it from there.",
+    "cta": "Begin Your Journey"
+  }
+}

@@ -1,0 +1,91 @@
+{
+  "title": "Resources — Articles, Prompts & Tools for Men | Leaving Egypt",
+  "hero": {
+    "eyebrow": "Resources",
+    "title": "Tools to help you take the next honest step.",
+    "lede": "A growing library of articles, reflection prompts, and simple exercises for men who want to move from knowing biblical principles to living them—across Faith, Family, Fitness, and Finance."
+  },
+  "articles": {
+    "eyebrow": "Read & reflect",
+    "title": "Introductory articles",
+    "lede": "Short, practical reads to get you started. Full versions are being prepared—the previews below show what's coming.",
+    "cards": [
+      {
+        "tag": "Resource",
+        "title": "Recognizing the Things That Keep Men Stuck",
+        "body": "Most men don't stay stuck because they're lazy. They stay stuck because certain patterns feel safer than change. This piece looks honestly at the quiet habits—numbing, hiding, over-working, avoiding—that keep good men from moving forward, and how naming them is the first step toward freedom."
+      },
+      {
+        "tag": "Resource",
+        "title": "Why Brotherhood Requires Honesty",
+        "body": "You can be in a room full of men and still be completely alone. Real brotherhood only grows where men tell the truth about their lives. This piece explores why honesty feels risky, why it's worth it, and how to build the kind of trust where growth actually happens."
+      },
+      {
+        "tag": "Resource",
+        "title": "Building Consistency Across Faith, Family, Fitness, and Finance",
+        "body": "Big change rarely comes from one dramatic decision. It comes from small, repeated choices in the areas that matter most. This piece offers a simple, grace-filled way to build steadier habits across all four pillars—without burning out or trying to fix everything at once."
+      }
+    ]
+  },
+  "downloads": {
+    "eyebrow": "Take it with you",
+    "title": "Downloadable resources",
+    "lede": "Simple guides you can print or save. Files will be attached here once finalized.",
+    "items": [
+      "Reflection Guide (PDF)",
+      "Four-Pillar Self-Check (PDF)",
+      "30-Day Habit Tracker (PDF)"
+    ]
+  },
+  "exercise": {
+    "eyebrow": "Try this",
+    "title": "A simple starting exercise",
+    "steps": [
+      {
+        "number": "01",
+        "title": "The Honest Inventory",
+        "body": "Set aside 20 quiet minutes. Write down the areas of life where you feel free and the areas where you still feel stuck. Don't fix anything yet—just tell the truth on paper."
+      },
+      {
+        "number": "02",
+        "title": "One Next Step",
+        "body": "Pick a single area from your inventory. Name one small step you could take this week. Not the whole staircase—just the next step."
+      },
+      {
+        "number": "03",
+        "title": "Bring One Man In",
+        "body": "Share that one step with a trusted friend or brother and ask him to check in with you. Growth sticks better when someone knows about it."
+      }
+    ]
+  },
+  "prayerPrompts": {
+    "eyebrow": "Sit with it",
+    "title": "Prayer & journaling prompts",
+    "lede": "One question for each pillar. Bring them to God, a journal, or a brother.",
+    "items": [
+      {
+        "pillar": "Faith",
+        "prompt": "Where have I been keeping God at arm's length—and what would one honest step toward Him look like today?"
+      },
+      {
+        "pillar": "Family",
+        "prompt": "Who in my home needs more of my attention this week? What's one specific way I can show up for them?"
+      },
+      {
+        "pillar": "Fitness",
+        "prompt": "What's one small, sustainable habit that would help me steward my body better—starting this week?"
+      },
+      {
+        "pillar": "Finance",
+        "prompt": "Where do my spending and giving line up with what I say matters most? Where don't they?"
+      }
+    ],
+    "cta": "Explore the Four Pillars"
+  },
+  "updates": {
+    "eyebrow": "Stay encouraged",
+    "title": "Get resource updates",
+    "intro": "Occasional emails with new resources and encouragement. No pressure, no spam—unsubscribe anytime.",
+    "privacyNote": "We keep contact consent and newsletter consent separate on purpose — signing up here only opts you into resource updates. See our Privacy Policy."
+  }
+}

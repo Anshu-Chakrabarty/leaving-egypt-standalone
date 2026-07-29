@@ -1,12 +1,286 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import meta from '../content/pages/home.json';
-import bodyRaw from '../content/bodies/home.md?raw';
-import { stripFrontmatter } from '../lib/content';
+import copy from '../content/copy/home.json';
+import { nl2brTitle, paragraphsToHtml } from '../lib/plainText';
 
-const body = stripFrontmatter(bodyRaw);
+const pillarIcons: Record<string, string> = {
+  faith: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z" stroke-linejoin="round"/></svg>',
+  family: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 11l8-7 8 7" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 10v9h12v-9" stroke-linejoin="round"/></svg>',
+  fitness: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 19C5 11 11 5 19 5c0 8-6 14-14 14z" stroke-linejoin="round"/><path d="M9 15c2-3 4-5 8-7" stroke-linecap="round"/></svg>',
+  finance: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><ellipse cx="12" cy="6" rx="7" ry="3"/><path d="M5 6v6c0 1.7 3.1 3 7 3s7-1.3 7-3V6"/><path d="M5 12v6c0 1.7 3.1 3 7 3s7-1.3 7-3v-6"/></svg>',
+};
+
+const engageIcons = [
+  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3.3 2.7-5 6-5s6 1.7 6 5"/><path d="M16 6a3 3 0 010 6M21 20c0-2.8-1.6-4.4-4-4.9"/></svg>',
+  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 5c3-1 6-1 8 0v14c-2-1-5-1-8 0z"/><path d="M20 5c-3-1-6-1-8 0v14c2-1 5-1 8 0z"/></svg>',
+  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6L9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="4" y="5" width="16" height="16" rx="2"/><path d="M4 9h16M8 3v4M16 3v4" stroke-linecap="round"/></svg>',
+  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z" stroke-linejoin="round"/></svg>',
+  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 19C5 11 11 5 19 5c0 8-6 14-14 14z" stroke-linejoin="round"/><path d="M9 15c2-3 4-5 8-7" stroke-linecap="round"/></svg>',
+];
 ---
 
 <BaseLayout title={meta.title} description={meta.description} path={meta.path}>
-  <main id="main" set:html={body} />
+  <main id="main">
+    <section class="hero">
+      <div class="hero__sky" aria-hidden="true"></div>
+      <div class="hero__sun" aria-hidden="true"></div>
+      <div class="hero__art" aria-hidden="true">
+        <svg viewBox="0 0 1440 260" preserveAspectRatio="none">
+          <path d="M0 150 L150 96 L330 138 L520 74 L720 130 L930 84 L1140 140 L1320 96 L1440 128 L1440 260 L0 260 Z" fill="#1c160f" opacity="0.55"/>
+          <path d="M0 190 C 220 150, 420 176, 640 168 C 900 158, 1080 200, 1440 176 L1440 260 L0 260 Z" fill="#14110e" opacity="0.85"/>
+          <path d="M0 220 C 300 196, 560 224, 820 216 C 1100 208, 1260 236, 1440 220 L1440 260 L0 260 Z" fill="#14110e"/>
+        </svg>
+      </div>
+      <div class="wrap hero__inner">
+        <p class="eyebrow" data-reveal>{copy.hero.eyebrow}</p>
+        <h1 data-reveal style="color: #fff" set:html={nl2brTitle(copy.hero.title)} />
+        <p class="hero__sub" data-reveal>{copy.hero.lede}</p>
+        <div class="btn-row" data-reveal>
+          <a class="btn btn--primary" href="/contact#interest">{copy.hero.primaryCta}</a>
+          <a class="btn btn--ghost" href="/about">{copy.hero.secondaryCta}</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="recognize-h">
+      <div class="wrap">
+        <div class="section-head" data-reveal>
+          <p class="eyebrow">{copy.recognition.eyebrow}</p>
+          <h2 id="recognize-h">{copy.recognition.title}</h2>
+          <p class="lede">{copy.recognition.lede}</p>
+        </div>
+        <ul class="recognize" data-reveal>
+          {copy.recognition.items.map((item) => (
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6L9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>{item}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <div class="horizon" aria-hidden="true">
+      <svg viewBox="0 0 1440 80" preserveAspectRatio="none"><path d="M0 60 C 240 10, 480 70, 720 40 C 960 12, 1200 66, 1440 30 L1440 80 L0 80 Z" fill="#eadfcb"/></svg>
+    </div>
+
+    <section class="section section--sand" aria-labelledby="mission-h">
+      <div class="wrap--narrow center" data-reveal>
+        <p class="eyebrow eyebrow--center">{copy.mission.eyebrow}</p>
+        <h2 id="mission-h">{copy.mission.title}</h2>
+        <p class="lede mt-1">{copy.mission.body}</p>
+        <div class="btn-row btn-row--center mt-2">
+          <a class="btn btn--dark" href="/about">{copy.mission.cta}</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="pillars" aria-labelledby="pillars-h">
+      <div class="wrap">
+        <div class="section-head" data-reveal>
+          <p class="eyebrow">{copy.pillars.eyebrow}</p>
+          <h2 id="pillars-h">{copy.pillars.title}</h2>
+          <p class="lede">{copy.pillars.lede}</p>
+        </div>
+        <div class="grid grid--4">
+          {copy.pillars.cards.map((card) => (
+            <article class="card pillar-card" data-pillar={card.id} data-reveal>
+              <div class="card__icon" set:html={pillarIcons[card.id]} />
+              <h3>{card.title}</h3>
+              <p>{card.description}</p>
+              <p style="margin-top: 1rem">
+                <a class="arrow-link" href={`/pillars#${card.id}`}>Explore this pillar <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+              </p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <div class="horizon horizon--onink" aria-hidden="true">
+      <svg viewBox="0 0 1440 80" preserveAspectRatio="none"><path d="M0 70 L180 30 L360 58 L560 18 L760 54 L980 22 L1200 60 L1440 34 L1440 80 L0 80 Z" fill="#2a2118"/></svg>
+    </div>
+
+    <section class="section section--ink" aria-labelledby="journey-h">
+      <div class="wrap">
+        <div class="section-head" data-reveal>
+          <p class="eyebrow">{copy.journey.eyebrow}</p>
+          <h2 id="journey-h">{copy.journey.title}</h2>
+          <p class="lede">{copy.journey.lede}</p>
+        </div>
+        <div class="journey">
+          {copy.journey.steps.map((step) => (
+            <div class="journey__step" data-reveal>
+              <span class="card__num">{step.number}</span>
+              <h3>{step.title}</h3>
+              <p>{step.body}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="brother-h">
+      <div class="wrap split">
+        <div class="figure-illus" style="aspect-ratio: 16/11" data-reveal>
+          <svg viewBox="0 0 640 400" role="img" aria-label="Illustration of a path winding toward the horizon">
+            <defs>
+              <linearGradient id="g2" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#6e6e42"/>
+                <stop offset="1" stop-color="#2a2118"/>
+              </linearGradient>
+            </defs>
+            <rect width="640" height="400" fill="url(#g2)"/>
+            <circle cx="320" cy="120" r="70" fill="#c9a05a" opacity="0.5"/>
+            <path d="M300 400 C 300 300, 360 260, 330 190 C 312 150, 320 130, 320 120" stroke="#eadfcb" stroke-width="22" fill="none" opacity="0.7" stroke-linecap="round"/>
+            <path d="M0 300 C 200 280, 440 300, 640 276 L640 400 L0 400 Z" fill="#1c160f" opacity="0.8"/>
+          </svg>
+        </div>
+        <div data-reveal>
+          <p class="eyebrow">{copy.brotherhood.eyebrow}</p>
+          <h2 id="brother-h">{copy.brotherhood.title}</h2>
+          <div class="mt-1 muted" set:html={paragraphsToHtml(copy.brotherhood.body)} />
+          <p class="mt-1">
+            <a class="arrow-link" href="/programs">{copy.brotherhood.cta} <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--sand" aria-labelledby="growth-h">
+      <div class="wrap">
+        <div class="section-head" data-reveal>
+          <p class="eyebrow">{copy.outcomes.eyebrow}</p>
+          <h2 id="growth-h">{copy.outcomes.title}</h2>
+          <p class="lede">{copy.outcomes.lede}</p>
+        </div>
+        <ul class="recognize" data-reveal>
+          {copy.outcomes.items.map((item) => (
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6L9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>{item}</span>
+            </li>
+          ))}
+        </ul>
+        <p class="muted mt-2" style="max-width: 60ch"><em>{copy.outcomes.disclaimer}</em></p>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="engage-h">
+      <div class="wrap">
+        <div class="section-head" data-reveal>
+          <p class="eyebrow">{copy.engage.eyebrow}</p>
+          <h2 id="engage-h">{copy.engage.title}</h2>
+          <p class="lede">
+            <span class="placeholder-flag">Confirm program availability</span>
+            {copy.engage.lede}
+          </p>
+        </div>
+        <div class="grid grid--3">
+          {copy.engage.cards.map((card, i) => (
+            <article class="card" data-reveal>
+              <div class="card__icon" set:html={engageIcons[i % engageIcons.length]} />
+              <h3 style="font-size: var(--step-1)">{card.title}</h3>
+              <p>{card.body}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--sand" aria-labelledby="tst-h">
+      <div class="wrap">
+        <div class="section-head section-head--center" data-reveal>
+          <p class="eyebrow eyebrow--center">{copy.testimonials.eyebrow}</p>
+          <h2 id="tst-h">{copy.testimonials.title}</h2>
+          <p class="lede">{copy.testimonials.lede}</p>
+        </div>
+        <div class="testimonials" data-reveal>
+          {copy.testimonials.items.map((item) => (
+            <figure class="testimonial">
+              <div class="testimonial__mark" aria-hidden="true">&ldquo;</div>
+              <blockquote class="testimonial__body">
+                <span class="placeholder-flag">{item.placeholderFlag}</span>
+                {item.quote}
+              </blockquote>
+              <figcaption class="testimonial__meta">{item.attribution}</figcaption>
+            </figure>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="sof-h">
+      <div class="wrap split split--reverse">
+        <div class="figure-illus" style="aspect-ratio: 16/11" data-reveal>
+          <svg viewBox="0 0 640 400" role="img" aria-label="Illustration of dawn breaking over an open horizon">
+            <defs>
+              <linearGradient id="g1" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#3a2c1c"/>
+                <stop offset="0.55" stop-color="#2a2118"/>
+                <stop offset="1" stop-color="#1c160f"/>
+              </linearGradient>
+              <radialGradient id="sun1" cx="0.7" cy="0.35" r="0.5">
+                <stop offset="0" stop-color="#e7c17f"/>
+                <stop offset="0.5" stop-color="#c9a05a"/>
+                <stop offset="1" stop-color="#c9a05a" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+            <rect width="640" height="400" fill="url(#g1)"/>
+            <circle cx="450" cy="150" r="120" fill="url(#sun1)"/>
+            <circle cx="450" cy="150" r="46" fill="#e7c17f" opacity="0.85"/>
+            <path d="M0 300 C 160 270, 300 290, 640 262 L640 400 L0 400 Z" fill="#14110e" opacity="0.7"/>
+            <path d="M0 340 C 220 316, 420 342, 640 320 L640 400 L0 400 Z" fill="#0f0c08"/>
+          </svg>
+        </div>
+        <div data-reveal>
+          <p class="eyebrow">{copy.sofTeaser.eyebrow}</p>
+          <h2 id="sof-h">{copy.sofTeaser.title}</h2>
+          <div class="mt-1 muted" set:html={paragraphsToHtml(copy.sofTeaser.body)} />
+          <p class="mt-1">
+            <a class="arrow-link" href="/statement-of-faith">{copy.sofTeaser.cta} <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--sand" aria-labelledby="faq-h">
+      <div class="wrap">
+        <div class="section-head" data-reveal>
+          <p class="eyebrow">{copy.faqTeaser.eyebrow}</p>
+          <h2 id="faq-h">{copy.faqTeaser.title}</h2>
+        </div>
+        <div class="accordion" data-reveal>
+          {copy.faqTeaser.items.map((item, i) => (
+            <div class="accordion__item">
+              <h3 style="margin: 0">
+                <button class="accordion__trigger" aria-expanded={i === 0 ? 'true' : 'false'} aria-controls={`hf-${i}`} id={`hft-${i}`}>
+                  {item.question}
+                  <svg class="accordion__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg>
+                </button>
+              </h3>
+              <div class="accordion__panel" id={`hf-${i}`} role="region" aria-labelledby={`hft-${i}`}>
+                <div class="accordion__panel-inner" set:html={paragraphsToHtml(item.answer)} />
+              </div>
+            </div>
+          ))}
+        </div>
+        <p class="mt-2">
+          <a class="arrow-link" href="/faq">{copy.faqTeaser.cta} <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </p>
+      </div>
+    </section>
+
+    <section class="cta-band" aria-labelledby="cta-h">
+      <div class="cta-band__sky" aria-hidden="true"></div>
+      <div class="wrap--narrow cta-band__inner" data-reveal>
+        <p class="eyebrow eyebrow--center">{copy.finalCta.eyebrow}</p>
+        <h2 id="cta-h">{copy.finalCta.title}</h2>
+        <p class="lede">{copy.finalCta.lede}</p>
+        <div class="btn-row btn-row--center">
+          <a class="btn btn--primary" href="/contact#interest">{copy.finalCta.cta}</a>
+        </div>
+      </div>
+    </section>
+  </main>
 </BaseLayout>

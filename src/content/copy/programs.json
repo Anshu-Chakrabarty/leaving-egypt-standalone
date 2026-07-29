@@ -1,0 +1,90 @@
+{
+  "title": "Brotherhood & Programs — How Men Grow Together | Leaving Egypt",
+  "hero": {
+    "eyebrow": "Brotherhood & Programs",
+    "title": "The work goes further when you're not walking alone.",
+    "lede": "Here's how Leaving Egypt helps men grow together. Specific formats and schedules are being finalized—clearly marked below—so this framework can be updated as offerings are confirmed."
+  },
+  "planningNote": "The offerings below describe the intended shape of Leaving Egypt. Items marked with a labeled flag still need the organization to confirm availability, schedule, format, location, and cost before launch. Nothing here should be read as a currently guaranteed program.",
+  "whyBrotherhood": {
+    "eyebrow": "Why brotherhood matters",
+    "title": "Men change faster when someone walks with them",
+    "body": "Isolation is where good intentions go to die. A man can decide to change on a Sunday and forget it by Wednesday if no one else knows. Brotherhood puts honest, encouraging people around your goals—so the truth gets spoken, the wins get celebrated, and the follow-through actually happens.\n\nScripture puts it simply: iron sharpens iron (Proverbs 27:17). We're built to grow in the company of others."
+  },
+  "offerings": {
+    "eyebrow": "How Leaving Egypt helps men grow",
+    "title": "Ways to get involved",
+    "lede": "Different men need different on-ramps. These are the paths we're building.",
+    "items": [
+      {
+        "title": "Brotherhood Groups",
+        "body": "Small, consistent circles of men who meet to be honest, pray, and spur one another on. The heart of Leaving Egypt."
+      },
+      {
+        "title": "Guided Biblical Teaching",
+        "body": "Clear, practical teaching that connects Scripture to real decisions—designed for men at any stage of faith."
+      },
+      {
+        "title": "Practical Growth Challenges",
+        "body": "Short, concrete challenges across Faith, Family, Fitness, and Finance that turn good intentions into steady habits."
+      },
+      {
+        "title": "Events & Retreats",
+        "body": "Set-apart time to step back, reset, and reconnect with God and other men."
+      },
+      {
+        "title": "Mentorship & Accountability",
+        "body": "One-to-one relationships that give men a steadier hand and honest feedback along the way."
+      },
+      {
+        "title": "Resources & Teaching",
+        "body": "Articles, reflections, and tools you can use on your own or bring into a group."
+      }
+    ]
+  },
+  "audience": {
+    "eyebrow": "Who it's for",
+    "title": "Any man ready to be honest",
+    "body": "Married or single. New to faith or long in it. Feeling far from God or simply worn down. You don't need to be a business owner, an athlete, or a Bible scholar. If you're willing to show up and tell the truth, there's a place for you.",
+    "expectations": [
+      "Honesty without judgment",
+      "Encouragement that's specific, not generic",
+      "Accountability you agreed to, not shame",
+      "Teaching grounded in Scripture",
+      "Practical next steps you can actually take",
+      "Confidentiality within the group"
+    ]
+  },
+  "notFor": {
+    "eyebrow": "Honest expectations",
+    "title": "What it is not",
+    "lede": "Being clear about what Leaving Egypt isn't protects you and keeps us honest:",
+    "items": [
+      "A replacement for your local church",
+      "Professional counseling, therapy, or crisis care",
+      "Medical, financial, or legal advice",
+      "A place for pressure, guilt, or hype",
+      "A guarantee of any particular outcome",
+      "A men's club that trades on image or status"
+    ],
+    "note": "If you're facing a crisis or need professional care, please reach out to a qualified professional. See our Disclaimer for details and emergency resources."
+  },
+  "detailsPending": {
+    "eyebrow": "Details being confirmed",
+    "title": "The practical specifics",
+    "lede": "We won't invent details we can't stand behind. Here's what still needs the organization's confirmation before it's published:",
+    "items": [
+      "which offerings are open now",
+      "meeting frequency and length",
+      "any cost to participate",
+      "in person, online, or both"
+    ]
+  },
+  "finalCta": {
+    "eyebrow": "Want the current details?",
+    "title": "Request information",
+    "lede": "Tell us what you're interested in and we'll share what's available right now.",
+    "primaryCta": "Begin Your Journey",
+    "secondaryCta": "Ask a Question"
+  }
+}

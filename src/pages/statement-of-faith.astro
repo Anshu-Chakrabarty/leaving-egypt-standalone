@@ -1,12 +1,66 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
 import meta from '../content/pages/statement-of-faith.json';
-import bodyRaw from '../content/bodies/statement-of-faith.md?raw';
-import { stripFrontmatter } from '../lib/content';
-
-const body = stripFrontmatter(bodyRaw);
+import copy from '../content/copy/statement-of-faith.json';
+import { paragraphsToHtml } from '../lib/plainText';
 ---
 
 <BaseLayout title={meta.title} description={meta.description} path={meta.path}>
-  <main id="main" set:html={body} />
+  <main id="main">
+    <PageHero
+      crumb="Statement of Faith"
+      eyebrow={copy.hero.eyebrow}
+      title={copy.hero.title}
+      lede={copy.hero.lede}
+    />
+
+    {copy.draftBanner && (
+      <div class="draft-banner wrap" style="margin-top:2rem" role="note">
+        <strong>Draft for leadership approval:</strong> {copy.draftBanner}
+      </div>
+    )}
+
+    <section class="section section--tight">
+      <div class="wrap--narrow prose" data-reveal>
+        <p class="lede">{copy.intro}</p>
+
+        {copy.articles.map((article, i) => (
+          <section class="sof-article" aria-labelledby={`sof-${i + 1}`}>
+            <span class="sof-article__num" aria-hidden="true">{article.number}</span>
+            <h2 id={`sof-${i + 1}`}>{article.title}</h2>
+            <Fragment set:html={paragraphsToHtml(article.body)} />
+          </section>
+        ))}
+      </div>
+    </section>
+
+    <div class="horizon" aria-hidden="true">
+      <svg viewBox="0 0 1440 80" preserveAspectRatio="none"><path d="M0 60 C 240 10, 480 70, 720 40 C 960 12, 1200 66, 1440 30 L1440 80 L0 80 Z" fill="currentColor"/></svg>
+    </div>
+
+    <section class="section section--sand">
+      <div class="wrap--narrow" data-reveal>
+        <p class="eyebrow">{copy.unity.eyebrow}</p>
+        <h2>{copy.unity.title}</h2>
+        <div class="mt-1" set:html={paragraphsToHtml(copy.unity.body)} />
+        <p class="mt-2">
+          <a class="arrow-link" href="/contact">{copy.unity.cta} <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </p>
+      </div>
+    </section>
+
+    <section class="cta-band" aria-labelledby="sof-cta-h">
+      <div class="cta-band__sky" aria-hidden="true"></div>
+      <div class="wrap--narrow cta-band__inner" data-reveal>
+        <p class="eyebrow eyebrow--center">{copy.finalCta.eyebrow}</p>
+        <h2 id="sof-cta-h">{copy.finalCta.title}</h2>
+        <p class="lede">{copy.finalCta.lede}</p>
+        <div class="btn-row btn-row--center">
+          <a class="btn btn--primary" href="/contact#interest">{copy.finalCta.primaryCta}</a>
+          <a class="btn btn--ghost" href="/about">{copy.finalCta.secondaryCta}</a>
+        </div>
+      </div>
+    </section>
+  </main>
 </BaseLayout>

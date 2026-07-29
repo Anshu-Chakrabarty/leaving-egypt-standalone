@@ -1,12 +1,50 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
 import meta from '../content/pages/terms.json';
-import bodyRaw from '../content/bodies/terms.md?raw';
-import { stripFrontmatter } from '../lib/content';
-
-const body = stripFrontmatter(bodyRaw);
+import copy from '../content/copy/terms.json';
+import { paragraphsToHtml } from '../lib/plainText';
 ---
 
 <BaseLayout title={meta.title} description={meta.description} path={meta.path}>
-  <main id="main" set:html={body} />
+  <main id="main">
+    <PageHero
+      crumb="Terms & Conditions"
+      eyebrow={copy.hero.eyebrow}
+      title={copy.hero.title}
+      lede={copy.hero.lede}
+    />
+
+    {copy.draftBanner && (
+      <div class="draft-banner wrap" style="margin-top:2rem" role="note">
+        <strong>Draft &mdash; legal review required:</strong> {copy.draftBanner}
+      </div>
+    )}
+
+    <section class="section section--tight">
+      <div class="wrap legal-layout">
+        <aside class="toc" aria-label="On this page">
+          <p class="toc__title">On this page</p>
+          <ol>
+            {copy.sections.map((section) => (
+              <li><a href={`#${section.id}`}>{section.heading}</a></li>
+            ))}
+          </ol>
+        </aside>
+        <div class="prose legal-body">
+          <p class="legal-meta">
+            <strong>Effective date:</strong> <span class="placeholder-flag">{copy.effectiveDate}</span> &nbsp;&middot;&nbsp;
+            <strong>Last updated:</strong> <span class="placeholder-flag">{copy.lastUpdated}</span>
+          </p>
+
+          {copy.sections.map((section) => (
+            <section id={section.id} class="prose-section">
+              <h2>{section.heading}</h2>
+              <Fragment set:html={paragraphsToHtml(section.body)} />
+            </section>
+          ))}
+        </div>
+      </div>
+    </section>
+  </main>
 </BaseLayout>

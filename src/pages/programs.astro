@@ -1,12 +1,155 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
 import meta from '../content/pages/programs.json';
-import bodyRaw from '../content/bodies/programs.md?raw';
-import { stripFrontmatter } from '../lib/content';
+import copy from '../content/copy/programs.json';
+import { paragraphsToHtml } from '../lib/plainText';
 
-const body = stripFrontmatter(bodyRaw);
+const offeringIcons = [
+  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3.3 2.7-5 6-5s6 1.7 6 5"/><path d="M16 6a3 3 0 010 6M21 20c0-2.8-1.6-4.4-4-4.9"/></svg>',
+  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 5c3-1 6-1 8 0v14c-2-1-5-1-8 0z"/><path d="M20 5c-3-1-6-1-8 0v14c2-1 5-1 8 0z"/></svg>',
+  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6L9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="4" y="5" width="16" height="16" rx="2"/><path d="M4 9h16M8 3v4M16 3v4" stroke-linecap="round"/></svg>',
+  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z" stroke-linejoin="round"/></svg>',
+  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 19C5 11 11 5 19 5c0 8-6 14-14 14z" stroke-linejoin="round"/><path d="M9 15c2-3 4-5 8-7" stroke-linecap="round"/></svg>',
+];
+
+const offeringFlags = [
+  'Confirm program availability',
+  'Add program schedule',
+  'Confirm program availability',
+  'Add program schedule',
+  'Confirm program availability',
+  'See the Resources page',
+];
+
+const detailsFlags = [
+  'Confirm program availability',
+  'Add program schedule',
+  'Add pricing or “free” status',
+  'Add location or online details',
+];
 ---
 
 <BaseLayout title={meta.title} description={meta.description} path={meta.path}>
-  <main id="main" set:html={body} />
+  <main id="main">
+    <PageHero
+      crumb="Brotherhood & Programs"
+      eyebrow={copy.hero.eyebrow}
+      title={copy.hero.title}
+      lede={copy.hero.lede}
+    />
+
+    {copy.planningNote && (
+      <div class="draft-banner wrap" style="margin-top: 2rem" role="note">
+        <strong>Planning note:</strong> {copy.planningNote}
+      </div>
+    )}
+
+    <section class="section section--tight" aria-labelledby="why-h">
+      <div class="wrap split">
+        <div class="figure-illus" style="aspect-ratio: 4/3" data-reveal>
+          <svg viewBox="0 0 640 400" role="img" aria-label="Illustration of a path winding toward the horizon">
+            <defs>
+              <linearGradient id="g2" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#6e6e42"/>
+                <stop offset="1" stop-color="#2a2118"/>
+              </linearGradient>
+            </defs>
+            <rect width="640" height="400" fill="url(#g2)"/>
+            <circle cx="320" cy="120" r="70" fill="#c9a05a" opacity="0.5"/>
+            <path d="M300 400 C 300 300, 360 260, 330 190 C 312 150, 320 130, 320 120" stroke="#eadfcb" stroke-width="22" fill="none" opacity="0.7" stroke-linecap="round"/>
+            <path d="M0 300 C 200 280, 440 300, 640 276 L640 400 L0 400 Z" fill="#1c160f" opacity="0.8"/>
+          </svg>
+        </div>
+        <div data-reveal>
+          <p class="eyebrow">{copy.whyBrotherhood.eyebrow}</p>
+          <h2 id="why-h">{copy.whyBrotherhood.title}</h2>
+          <div class="mt-1 muted" set:html={paragraphsToHtml(copy.whyBrotherhood.body)} />
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="help-h">
+      <div class="wrap">
+        <div class="section-head" data-reveal>
+          <p class="eyebrow">{copy.offerings.eyebrow}</p>
+          <h2 id="help-h">{copy.offerings.title}</h2>
+          <p class="lede">{copy.offerings.lede}</p>
+        </div>
+        <div class="grid grid--3">
+          {copy.offerings.items.map((item, i) => (
+            <article class="card" data-reveal>
+              <div class="card__icon" set:html={offeringIcons[i % offeringIcons.length]} />
+              <h3 style="font-size: var(--step-1)">{item.title}</h3>
+              <p>{item.body}</p>
+              <p style="margin-top: 0.9rem">
+                <span class="placeholder-flag">{offeringFlags[i % offeringFlags.length]}</span>
+              </p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--sand" aria-labelledby="for-h">
+      <div class="wrap">
+        <div class="grid grid--2">
+          <div data-reveal>
+            <p class="eyebrow">{copy.audience.eyebrow}</p>
+            <h2 id="for-h" style="font-size: var(--step-2)">{copy.audience.title}</h2>
+            <div class="mt-1 muted" set:html={paragraphsToHtml(copy.audience.body)} />
+            <div class="reflection">
+              <h4>What participants can expect</h4>
+              <ul class="recognize" style="grid-template-columns: 1fr; gap: 0.55rem; margin-top: 0.6rem">
+                {copy.audience.expectations.map((item) => (
+                  <li>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6L9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg><span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+          <div data-reveal>
+            <p class="eyebrow">{copy.notFor.eyebrow}</p>
+            <h2 style="font-size: var(--step-2)">{copy.notFor.title}</h2>
+            <p class="mt-1 muted">{copy.notFor.lede}</p>
+            <ul class="muted mt-1" style="padding-left: 1.2rem">
+              {copy.notFor.items.map((item) => <li>{item}</li>)}
+            </ul>
+            <p class="muted mt-1"><em>{copy.notFor.note}</em></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="details-h">
+      <div class="wrap--narrow" data-reveal>
+        <p class="eyebrow">{copy.detailsPending.eyebrow}</p>
+        <h2 id="details-h">{copy.detailsPending.title}</h2>
+        <p class="mt-1 muted">{copy.detailsPending.lede}</p>
+        <ul class="muted mt-1" style="padding-left: 1.2rem; line-height: 2">
+          {copy.detailsPending.items.map((item, i) => (
+            <li>
+              <span class="placeholder-flag">{detailsFlags[i % detailsFlags.length]}</span>
+              {item}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <section class="cta-band" aria-labelledby="rq-h">
+      <div class="cta-band__sky" aria-hidden="true"></div>
+      <div class="wrap--narrow cta-band__inner" data-reveal>
+        <p class="eyebrow eyebrow--center">{copy.finalCta.eyebrow}</p>
+        <h2 id="rq-h">{copy.finalCta.title}</h2>
+        <p class="lede">{copy.finalCta.lede}</p>
+        <div class="btn-row btn-row--center">
+          <a class="btn btn--primary" href="/contact#interest">{copy.finalCta.primaryCta}</a>
+          <a class="btn btn--ghost" href="/contact">{copy.finalCta.secondaryCta}</a>
+        </div>
+      </div>
+    </section>
+  </main>
 </BaseLayout>

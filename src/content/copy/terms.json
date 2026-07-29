@@ -1,0 +1,118 @@
+{
+  "title": "Terms & Conditions | Leaving Egypt",
+  "hero": {
+    "eyebrow": "Terms & Conditions",
+    "title": "The basic rules for using this website.",
+    "lede": "By using this website, you agree to these terms. Please read them carefully."
+  },
+  "draftBanner": "These Terms are a professionally written starting point. Complete the bracketed placeholders and have the document reviewed by qualified legal counsel before publishing.",
+  "effectiveDate": "Add effective date",
+  "lastUpdated": "Add effective date",
+  "sections": [
+    {
+      "id": "acceptance",
+      "heading": "Acceptance of Terms",
+      "body": "By accessing or using this website, you agree to these Terms & Conditions and our Privacy Policy. If you don't agree, please don't use the site."
+    },
+    {
+      "id": "use",
+      "heading": "Website Use",
+      "body": "You may use this website for lawful, personal, non-commercial purposes. You agree not to misuse the site, interfere with its operation, or attempt to access areas or data you're not authorized to access."
+    },
+    {
+      "id": "purpose",
+      "heading": "Informational and Educational Purpose",
+      "body": "The content on this website is provided for general informational, educational, and encouragement purposes. It is not professional counseling, medical, financial, legal, or other professional advice. See our Disclaimer for details."
+    },
+    {
+      "id": "eligibility",
+      "heading": "Eligibility for Programs",
+      "body": "Programs and offerings are intended for adults. Specific eligibility requirements, if any, will be shared when programs are confirmed."
+    },
+    {
+      "id": "submissions",
+      "heading": "User Submissions",
+      "body": "When you submit information through our forms, you confirm it's accurate and that you have the right to share it. Don't submit sensitive personal information or anything unlawful, harmful, or that infringes others' rights."
+    },
+    {
+      "id": "conduct",
+      "heading": "Acceptable Conduct",
+      "body": "You agree not to use the website to harass, threaten, or harm others; to post unlawful or infringing content; or to disrupt the site's security or functionality."
+    },
+    {
+      "id": "ip",
+      "heading": "Intellectual Property",
+      "body": "The original content, design, text, and graphics on this website belong to Leaving Egypt or its licensors and are protected by applicable laws. You may not reproduce or redistribute them without permission, except as allowed by law."
+    },
+    {
+      "id": "quotations",
+      "heading": "Bible and Third-Party Quotations",
+      "body": "Scripture references are used respectfully for educational purposes. Where a specific Bible translation or third-party material is quoted, it remains the property of its respective rights holders and is used accordingly."
+    },
+    {
+      "id": "third-party",
+      "heading": "Third-Party Links and Services",
+      "body": "Our website may link to third-party websites or services we don't control. We're not responsible for their content, policies, or practices, and linking does not imply endorsement."
+    },
+    {
+      "id": "no-guarantee",
+      "heading": "No Guarantee of Outcomes",
+      "body": "We do not promise or guarantee any particular personal, spiritual, relational, health, business, or financial outcome. Individual experiences vary, and results depend on many factors outside our control."
+    },
+    {
+      "id": "availability",
+      "heading": "Program Availability",
+      "body": "Programs, resources, and features may change, pause, or end at any time. We don't guarantee that any specific offering is currently available."
+    },
+    {
+      "id": "payments",
+      "heading": "Payments and Refunds",
+      "body": "If paid programs are offered in the future, pricing, billing, and refund terms will be posted at that time."
+    },
+    {
+      "id": "termination",
+      "heading": "Suspension or Termination",
+      "body": "We may suspend or end access to the website or any offering, for any reason, without notice, including for conduct we believe violates these terms."
+    },
+    {
+      "id": "disclaimers",
+      "heading": "Disclaimers",
+      "body": "The website and its content are provided \"as is\" and \"as available,\" without warranties of any kind, to the fullest extent permitted by law. Please review our full Disclaimer."
+    },
+    {
+      "id": "liability",
+      "heading": "Limitation of Liability",
+      "body": "To the fullest extent permitted by law, Leaving Egypt and those associated with it will not be liable for any indirect, incidental, or consequential damages arising from your use of the website or its content."
+    },
+    {
+      "id": "indemnification",
+      "heading": "Indemnification",
+      "body": "You agree to hold Leaving Egypt harmless from claims arising out of your misuse of the website or your violation of these terms, to the extent permitted by law."
+    },
+    {
+      "id": "governing-law",
+      "heading": "Governing Law",
+      "body": "These terms are governed by the laws of [Add governing state], without regard to conflict-of-law principles."
+    },
+    {
+      "id": "disputes",
+      "heading": "Dispute Resolution",
+      "body": "Any disputes will be handled as described here. Confirm the preferred approach with legal counsel."
+    },
+    {
+      "id": "entity",
+      "heading": "Organization Information",
+      "body": "This website is operated by [Add legal entity name], formed in [Add state of formation], located at [Add business address]."
+    },
+    {
+      "id": "changes",
+      "heading": "Changes to These Terms",
+      "body": "We may update these terms from time to time. Continued use of the website after changes means you accept the updated terms."
+    },
+    {
+      "id": "contact",
+      "heading": "Contact",
+      "body": "Questions about these terms? Email us at [CONTACT EMAIL]."
+    }
+  ]
+}

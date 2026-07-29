@@ -1,0 +1,48 @@
+{
+  "title": "Website & Program Disclaimer | Leaving Egypt",
+  "hero": {
+    "eyebrow": "Website & Program Disclaimer",
+    "title": "Important context for everything we share.",
+    "lede": "Please read this carefully. It explains what Leaving Egypt is—and what it is not."
+  },
+  "draftBanner": "This disclaimer is a professionally written starting point. Review it with qualified counsel to confirm it fits the organization's actual activities before publishing.",
+  "effectiveDate": "Add effective date",
+  "lastUpdated": "Add effective date",
+  "sections": [
+    {
+      "id": "religious",
+      "heading": "Religious and Educational Disclaimer",
+      "body": "Leaving Egypt provides biblical teaching, encouragement, education, and community for men. We do not guarantee spiritual outcomes, and our work is not a substitute for participation in a healthy local church. We encourage every man to be rooted in a local congregation."
+    },
+    {
+      "id": "mental-health",
+      "heading": "Mental-Health Disclaimer",
+      "body": "Leaving Egypt and this website are not a substitute for licensed counseling, psychiatric care, crisis intervention, addiction treatment, or other professional mental-health services. Seeking professional help is a sign of strength.\n\nIf you or someone you know is in immediate danger or crisis, contact emergency services right away. In the U.S., call or text 988 (Suicide & Crisis Lifeline) or call 911. Leaving Egypt is not a crisis service and cannot provide emergency assistance."
+    },
+    {
+      "id": "medical",
+      "heading": "Medical and Fitness Disclaimer",
+      "body": "Any fitness or wellness information we share is general education, not medical advice. It is not a diagnosis or treatment, and it does not replace guidance from qualified healthcare professionals. Talk with your doctor before starting any new fitness, diet, or wellness practice, especially if you have a health condition."
+    },
+    {
+      "id": "financial",
+      "heading": "Financial Disclaimer",
+      "body": "Any finance content concerns general biblical stewardship and education. It is not financial, investment, tax, accounting, or legal advice, and it is not a promise of wealth, income, or financial results. Consult qualified professionals for decisions about your specific situation."
+    },
+    {
+      "id": "results",
+      "heading": "Results Disclaimer",
+      "body": "Individual experiences vary. We do not promise specific results in your relationships, health, finances, work, faith, or personal growth. What you gain depends on many factors, including your own participation and circumstances."
+    },
+    {
+      "id": "external",
+      "heading": "External Links",
+      "body": "Our website may reference or link to third-party content and services we don't control. We're not responsible for their accuracy, content, or practices, and a link does not mean we endorse them."
+    },
+    {
+      "id": "contact",
+      "heading": "Questions",
+      "body": "If anything here is unclear, email us at [CONTACT EMAIL]."
+    }
+  ]
+}

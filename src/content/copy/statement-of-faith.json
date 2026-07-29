@@ -1,0 +1,85 @@
+{
+  "title": "Statement of Faith | Leaving Egypt",
+  "hero": {
+    "eyebrow": "Statement of Faith",
+    "title": "What we believe, and why it holds everything together.",
+    "lede": "Leaving Egypt is built on historic, Christ-centered Christian belief. This statement is intentionally broad—it focuses on the core of the faith rather than narrow or secondary questions."
+  },
+  "draftBanner": "This Statement of Faith is a professionally written starting point. It should be reviewed, edited, and formally approved by Leaving Egypt's leadership before it is published as the organization's official position.",
+  "intro": "We hold to the central beliefs shared by Christians across many traditions. Our aim is to keep the main thing the main thing: Jesus Christ—who He is, what He has done, and the new life He offers.",
+  "articles": [
+    {
+      "number": "01",
+      "title": "The Bible",
+      "body": "We believe the Bible is God's written Word, given through people He guided, and that it is trustworthy and sufficient to teach us who God is and how to live. It is our final guide for faith and practice, and we read it with humility, in community, and with a desire to obey what it says."
+    },
+    {
+      "number": "02",
+      "title": "One God",
+      "body": "We believe in one God, the Creator of all things, who is holy, good, just, and loving. He made us on purpose and for a purpose, and He invites us into relationship with Him."
+    },
+    {
+      "number": "03",
+      "title": "The Trinity",
+      "body": "We believe this one God exists eternally as Father, Son, and Holy Spirit—three persons, one God. Each is fully God, and together they act in perfect unity."
+    },
+    {
+      "number": "04",
+      "title": "Jesus Christ",
+      "body": "We believe Jesus Christ is fully God and fully man. He lived a sinless life, revealed the Father to us, and came to rescue people who could not rescue themselves."
+    },
+    {
+      "number": "05",
+      "title": "His Death and Resurrection",
+      "body": "We believe Jesus died on the cross in our place, taking on the weight of our sin, and that He rose bodily from the grave. His resurrection is the ground of our hope—proof that death and shame do not get the last word."
+    },
+    {
+      "number": "06",
+      "title": "Salvation by Grace through Faith",
+      "body": "We believe we are made right with God not by our own effort or record, but as a gift of His grace, received through faith in Jesus. No one earns this; everyone is welcome to receive it."
+    },
+    {
+      "number": "07",
+      "title": "The Holy Spirit",
+      "body": "We believe the Holy Spirit lives in every follower of Jesus, giving new life, comfort, conviction, and power to change. He is the one who does the deep work in us that we cannot do on our own."
+    },
+    {
+      "number": "08",
+      "title": "Growth and Sanctification",
+      "body": "We believe God is patiently shaping His people to become more like Jesus over a lifetime. Growth is real but gradual, and it happens through Scripture, prayer, honest community, and everyday obedience—not through perfection or performance."
+    },
+    {
+      "number": "09",
+      "title": "The Church",
+      "body": "We believe followers of Jesus are meant to belong to His Church—the wider family of believers and a committed local congregation. Leaving Egypt is a brotherhood that walks alongside the local church; it does not replace it."
+    },
+    {
+      "number": "10",
+      "title": "Prayer and Discipleship",
+      "body": "We believe God hears His people and invites honest conversation through prayer. We believe every man is called both to keep learning as a follower of Jesus and to help others do the same."
+    },
+    {
+      "number": "11",
+      "title": "Christ's Return and Eternal Life",
+      "body": "We believe Jesus will return, that God will one day set all things right, and that those who trust in Christ have the hope of eternal life with Him."
+    },
+    {
+      "number": "12",
+      "title": "Living Faith",
+      "body": "We believe real faith shows up in how we live—in love, service, integrity, and obedience. Faith is not only something we say we believe; it is something we practice, at home, at work, and with one another."
+    }
+  ],
+  "unity": {
+    "eyebrow": "A note on unity",
+    "title": "Room for the local church",
+    "body": "Men come to Leaving Egypt from different churches and different points in their faith. We focus on what unites followers of Jesus rather than the secondary questions that faithful Christians sometimes see differently. We also stay out of partisan politics. Leaving Egypt is a brotherhood that supports your local church—never a substitute for it.\n\nIf you're still exploring faith, you are welcome here. You don't need to have it all figured out to take a first step.",
+    "cta": "Questions about what we believe? Contact us"
+  },
+  "finalCta": {
+    "eyebrow": "Walk it out with others",
+    "title": "Belief grows best in brotherhood",
+    "lede": "You don't have to sort through all of this alone. Take an honest first step and let other men walk with you.",
+    "primaryCta": "Begin Your Journey",
+    "secondaryCta": "Learn About Us"
+  }
+}

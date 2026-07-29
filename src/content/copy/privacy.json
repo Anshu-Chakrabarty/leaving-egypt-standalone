@@ -1,0 +1,93 @@
+{
+  "title": "Privacy Policy | Leaving Egypt",
+  "hero": {
+    "eyebrow": "Privacy Policy",
+    "title": "How we handle the information you share.",
+    "lede": "This policy explains what we collect through this website, how we use it, and the choices you have."
+  },
+  "draftBanner": "This Privacy Policy is a professionally written starting point tailored to this website. Have it reviewed by qualified legal counsel and confirm every detail before publishing.",
+  "effectiveDate": "Add effective date",
+  "lastUpdated": "Add effective date",
+  "sections": [
+    {
+      "id": "info-you-submit",
+      "heading": "Information You Submit",
+      "body": "When you use our contact, interest, or resource-update forms, we collect the information you choose to provide—such as your name, email address, and any details you include in your message. Providing this information is voluntary, but some of it is needed for us to respond.\n\nPlease do not submit highly sensitive medical, financial, legal, mental-health, or confidential personal information through our forms."
+    },
+    {
+      "id": "technical-info",
+      "heading": "Basic Technical Information",
+      "body": "Like most websites, our hosting and form provider may automatically receive limited technical information (such as a general location, browser type, or the time of a request) as part of delivering the site and processing submissions. We do not load Google Analytics, advertising pixels, or similar tracking tools by default."
+    },
+    {
+      "id": "cookies",
+      "heading": "Cookies",
+      "body": "This website does not set advertising or analytics cookies by default. Our form provider may use limited cookies or similar technology strictly to process your submission and reduce spam. Review your final provider settings and update this section if any cookies are added."
+    },
+    {
+      "id": "providers",
+      "heading": "Form and Hosting Providers",
+      "body": "We use third-party services to operate this site and process form submissions. Form submissions are currently handled by a third-party form-processing service, and the site is served by a web-hosting provider. These providers process data on our behalf under their own terms and privacy practices."
+    },
+    {
+      "id": "how-we-use",
+      "heading": "How We Use Information",
+      "body": "We use the information you provide to respond to your inquiry, share requested details, send resource updates if you opted in, improve the website, and maintain security. We do not sell your personal information."
+    },
+    {
+      "id": "sharing",
+      "heading": "When Information May Be Shared",
+      "body": "We may share information with service providers who help us operate the website and communicate with you, when required by law, or to protect the rights and safety of people and the organization. We do not sell or rent your personal information to third parties."
+    },
+    {
+      "id": "retention",
+      "heading": "Data Retention",
+      "body": "We keep the information you submit only as long as reasonably necessary to respond to you and for related record-keeping, unless a longer period is required."
+    },
+    {
+      "id": "security",
+      "heading": "Security",
+      "body": "We take reasonable steps to protect the information you share. However, no method of transmission or storage over the internet is completely secure, and we cannot guarantee absolute security. Please keep this in mind when deciding what to send us."
+    },
+    {
+      "id": "choices",
+      "heading": "Your Choices",
+      "body": "You may ask us to update or delete the information you've submitted, and you can unsubscribe from resource updates at any time using the link in those emails or by contacting us."
+    },
+    {
+      "id": "email-comms",
+      "heading": "Email Communications",
+      "body": "If you opt in to resource updates, we'll send occasional emails you can unsubscribe from at any time. We keep general contact consent and marketing consent separate."
+    },
+    {
+      "id": "third-party-links",
+      "heading": "Third-Party Links",
+      "body": "Our website may link to other sites we don't control. We're not responsible for their content or privacy practices, and we encourage you to review their policies."
+    },
+    {
+      "id": "children",
+      "heading": "Children's Privacy",
+      "body": "This website is intended for adults and is not directed to children under 13. We do not knowingly collect personal information from children under 13. If you believe a child has provided us information, please contact us so we can remove it."
+    },
+    {
+      "id": "state-rights",
+      "heading": "U.S. State Privacy Rights",
+      "body": "Depending on where you live, you may have rights regarding your personal information—such as the right to access, correct, or delete it, or to opt out of certain uses. Where these rights apply, we will honor them as required by applicable law. To make a request, contact us using the details below."
+    },
+    {
+      "id": "international",
+      "heading": "International Visitors",
+      "body": "This website is operated in the United States. If you access it from outside the U.S., understand that your information may be processed in the United States, where privacy laws may differ from those in your location."
+    },
+    {
+      "id": "changes",
+      "heading": "Changes to This Policy",
+      "body": "We may update this policy from time to time. When we do, we'll revise the \"last updated\" date above. Significant changes may be highlighted on the website."
+    },
+    {
+      "id": "contact",
+      "heading": "Contact Us",
+      "body": "Questions about this policy or your information? Email us at [CONTACT EMAIL]."
+    }
+  ]
+}

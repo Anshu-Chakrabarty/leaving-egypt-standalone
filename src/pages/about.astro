@@ -1,12 +1,198 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
 import meta from '../content/pages/about.json';
-import bodyRaw from '../content/bodies/about.md?raw';
-import { stripFrontmatter } from '../lib/content';
+import copy from '../content/copy/about.json';
+import { paragraphsToHtml } from '../lib/plainText';
 
-const body = stripFrontmatter(bodyRaw);
+const leaderIllustrations = [
+  `<svg viewBox="0 0 640 400" role="img" aria-label="Illustration of dawn breaking over an open horizon">
+  <defs><linearGradient id="g1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3a2c1c"/><stop offset="0.55" stop-color="#2a2118"/><stop offset="1" stop-color="#1c160f"/></linearGradient>
+  <radialGradient id="sun1" cx="0.7" cy="0.35" r="0.5"><stop offset="0" stop-color="#e7c17f"/><stop offset="0.5" stop-color="#c9a05a"/><stop offset="1" stop-color="#c9a05a" stop-opacity="0"/></radialGradient></defs>
+  <rect width="640" height="400" fill="url(#g1)"/>
+  <circle cx="450" cy="150" r="120" fill="url(#sun1)"/>
+  <circle cx="450" cy="150" r="46" fill="#e7c17f" opacity="0.85"/>
+  <path d="M0 300 C 160 270, 300 290, 640 262 L640 400 L0 400 Z" fill="#14110e" opacity="0.7"/>
+  <path d="M0 340 C 220 316, 420 342, 640 320 L640 400 L0 400 Z" fill="#0f0c08"/>
+</svg>`,
+  `<svg viewBox="0 0 640 400" role="img" aria-label="Illustration of distant ridgelines at first light">
+  <defs><linearGradient id="g4b" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#b4562f" stop-opacity="0.5"/><stop offset="0.5" stop-color="#2a2118"/><stop offset="1" stop-color="#14110e"/></linearGradient></defs>
+  <rect width="640" height="400" fill="url(#g4b)"/>
+  <path d="M0 210 L120 150 L240 200 L380 130 L500 190 L640 140 L640 400 L0 400 Z" fill="#2a2118" opacity="0.8"/>
+  <path d="M0 260 L160 210 L320 250 L480 200 L640 244 L640 400 L0 400 Z" fill="#1c160f"/>
+</svg>`,
+  `<svg viewBox="0 0 640 400" role="img" aria-label="Illustration of an open field under a warm sky">
+  <defs><linearGradient id="g5" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c9a05a" stop-opacity="0.45"/><stop offset="0.6" stop-color="#2a2118"/><stop offset="1" stop-color="#1c160f"/></linearGradient></defs>
+  <rect width="640" height="400" fill="url(#g5)"/>
+  <circle cx="500" cy="120" r="60" fill="#e7c17f" opacity="0.6"/>
+  <path d="M0 280 Q 320 250 640 280 L640 400 L0 400 Z" fill="#3d3225"/>
+  <path d="M60 300 V340 M100 296 V336 M140 302 V342 M540 300 V340 M580 296 V336" stroke="#6e6e42" stroke-width="4" opacity="0.6"/>
+</svg>`,
+];
 ---
 
 <BaseLayout title={meta.title} description={meta.description} path={meta.path}>
-  <main id="main" set:html={body} />
+  <main id="main">
+    <PageHero
+      crumb="About"
+      eyebrow={copy.hero.eyebrow}
+      title={copy.hero.title}
+      lede={copy.hero.lede}
+    />
+
+    <section class="section" aria-labelledby="rep-h">
+      <div class="wrap--narrow">
+        <div class="section-head" data-reveal>
+          <p class="eyebrow">{copy.represent.eyebrow}</p>
+          <h2 id="rep-h">{copy.represent.title}</h2>
+        </div>
+        <div class="stack" data-reveal set:html={paragraphsToHtml(copy.represent.body)} />
+      </div>
+    </section>
+
+    <div class="horizon" aria-hidden="true">
+      <svg viewBox="0 0 1440 80" preserveAspectRatio="none"><path d="M0 60 C 240 10, 480 70, 720 40 C 960 12, 1200 66, 1440 30 L1440 80 L0 80 Z" fill="#eadfcb"/></svg>
+    </div>
+
+    <section class="section section--sand" aria-labelledby="mv-h">
+      <div class="wrap">
+        <div class="grid grid--2">
+          <div data-reveal>
+            <p class="eyebrow">{copy.missionVision.mission.eyebrow}</p>
+            <h2 id="mv-h" style="font-size:var(--step-2)">{copy.missionVision.mission.title}</h2>
+            <div class="mt-1 muted" set:html={paragraphsToHtml(copy.missionVision.mission.body)} />
+          </div>
+          <div data-reveal>
+            <p class="eyebrow">{copy.missionVision.vision.eyebrow}</p>
+            <h2 style="font-size:var(--step-2)">{copy.missionVision.vision.title}</h2>
+            <div class="mt-1 muted" set:html={paragraphsToHtml(copy.missionVision.vision.body)} />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="prob-h">
+      <div class="wrap split">
+        <div class="figure-illus" style="aspect-ratio:4/3" data-reveal>
+          <svg viewBox="0 0 640 400" role="img" aria-label="Illustration of distant ridgelines at first light">
+            <defs><linearGradient id="g4" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#b4562f" stop-opacity="0.5"/><stop offset="0.5" stop-color="#2a2118"/><stop offset="1" stop-color="#14110e"/></linearGradient></defs>
+            <rect width="640" height="400" fill="url(#g4)"/>
+            <path d="M0 210 L120 150 L240 200 L380 130 L500 190 L640 140 L640 400 L0 400 Z" fill="#2a2118" opacity="0.8"/>
+            <path d="M0 260 L160 210 L320 250 L480 200 L640 244 L640 400 L0 400 Z" fill="#1c160f"/>
+          </svg>
+        </div>
+        <div data-reveal>
+          <p class="eyebrow">{copy.problem.eyebrow}</p>
+          <h2 id="prob-h">{copy.problem.title}</h2>
+          <div class="mt-1 muted" set:html={paragraphsToHtml(copy.problem.body)} />
+        </div>
+      </div>
+    </section>
+
+    <div class="horizon horizon--onink" aria-hidden="true">
+      <svg viewBox="0 0 1440 80" preserveAspectRatio="none"><path d="M0 50 C 180 30, 360 30, 540 50 C 720 70, 900 70, 1080 50 C 1260 30, 1350 30, 1440 42 L1440 80 L0 80 Z" fill="#2a2118"/></svg>
+    </div>
+
+    <section class="section section--ink" aria-labelledby="exodus-h">
+      <div class="wrap--narrow">
+        <div data-reveal>
+          <p class="eyebrow">{copy.exodus.eyebrow}</p>
+          <h2 id="exodus-h">{copy.exodus.title}</h2>
+          <p class="lede mt-1">{copy.exodus.lede}</p>
+          <div class="muted mt-1" set:html={paragraphsToHtml(copy.exodus.body)} />
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="freedom-h">
+      <div class="wrap--narrow" data-reveal>
+        <p class="eyebrow">{copy.freedom.eyebrow}</p>
+        <h2 id="freedom-h">{copy.freedom.title}</h2>
+        <div class="mt-1 muted" set:html={paragraphsToHtml(copy.freedom.body)} />
+      </div>
+    </section>
+
+    <div class="horizon" aria-hidden="true">
+      <svg viewBox="0 0 1440 80" preserveAspectRatio="none"><path d="M0 60 C 240 10, 480 70, 720 40 C 960 12, 1200 66, 1440 30 L1440 80 L0 80 Z" fill="#eadfcb"/></svg>
+    </div>
+
+    <section class="section section--sand" aria-labelledby="values-h">
+      <div class="wrap">
+        <div class="section-head" data-reveal>
+          <p class="eyebrow">{copy.values.eyebrow}</p>
+          <h2 id="values-h">{copy.values.title}</h2>
+          <p class="lede">{copy.values.lede}</p>
+        </div>
+        <div class="values">
+          {copy.values.items.map((value) => (
+            <div class="value" data-reveal>
+              <h3>{value.title}</h3>
+              <p>{value.body}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="serve-h">
+      <div class="wrap">
+        <div class="grid grid--2">
+          <div data-reveal>
+            <p class="eyebrow">{copy.serve.who.eyebrow}</p>
+            <h2 id="serve-h" style="font-size:var(--step-2)">{copy.serve.who.title}</h2>
+            <div class="mt-1 muted" set:html={paragraphsToHtml(copy.serve.who.body)} />
+          </div>
+          <div data-reveal>
+            <p class="eyebrow">{copy.serve.approach.eyebrow}</p>
+            <h2 style="font-size:var(--step-2)">{copy.serve.approach.title}</h2>
+            <div class="mt-1 muted" set:html={paragraphsToHtml(copy.serve.approach.body)} />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="horizon horizon--onink" aria-hidden="true">
+      <svg viewBox="0 0 1440 80" preserveAspectRatio="none"><path d="M0 70 L180 30 L360 58 L560 18 L760 54 L980 22 L1200 60 L1440 34 L1440 80 L0 80 Z" fill="#2a2118"/></svg>
+    </div>
+
+    <section class="section section--ink" aria-labelledby="lead-h">
+      <div class="wrap">
+        <div class="section-head" data-reveal>
+          <p class="eyebrow">{copy.leadership.eyebrow}</p>
+          <h2 id="lead-h">{copy.leadership.title}</h2>
+          <p class="lede">{copy.leadership.lede}</p>
+        </div>
+        <div class="grid grid--3">
+          {copy.leadership.people.map((person, i) => (
+            <article class="card" data-reveal style="background:#332a1f;border-color:#453927;color:var(--text-invert)">
+              <div
+                class="figure-illus"
+                style="aspect-ratio:1/1;margin-bottom:1rem"
+                set:html={leaderIllustrations[i % leaderIllustrations.length]}
+              />
+              <p class="placeholder-flag">{person.nameFlag}</p>
+              <h3 style="color:var(--text-invert);font-size:var(--step-1)">{person.name}</h3>
+              <p style="color:var(--text-invert-soft)">
+                <span class="placeholder-flag">{person.bioFlag}</span>
+                {person.bio}
+              </p>
+            </article>
+          ))}
+        </div>
+        <p class="muted mt-2"><em>{copy.leadership.note}</em></p>
+      </div>
+    </section>
+
+    <section class="cta-band" aria-labelledby="acta-h">
+      <div class="cta-band__sky" aria-hidden="true"></div>
+      <div class="wrap--narrow cta-band__inner" data-reveal>
+        <p class="eyebrow eyebrow--center">{copy.finalCta.eyebrow}</p>
+        <h2 id="acta-h">{copy.finalCta.title}</h2>
+        <p class="lede">{copy.finalCta.lede}</p>
+        <div class="btn-row btn-row--center">
+          <a class="btn btn--primary" href="/contact#interest">{copy.finalCta.cta}</a>
+        </div>
+      </div>
+    </section>
+  </main>
 </BaseLayout>

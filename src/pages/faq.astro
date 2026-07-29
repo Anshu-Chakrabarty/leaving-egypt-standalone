@@ -2,11 +2,11 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import meta from '../content/pages/faq.json';
 import faqData from '../content/faq/items.json';
-import { plainTextToHtml } from '../lib/plainText';
+import { paragraphsToHtml } from '../lib/plainText';
 
 const items = faqData.items.map((item) => ({
   ...item,
-  answerHtml: plainTextToHtml(item.answer),
+  answerHtml: paragraphsToHtml(item.answer),
 }));
 ---
 

@@ -1,0 +1,16 @@
+{
+  "title": "Thank You | Leaving Egypt",
+  "hero": {
+    "eyebrow": "Message received",
+    "title": "Thank you for reaching out",
+    "lede": "Your message is on its way. A real person will read it and follow up. We're glad you took this step."
+  },
+  "next": {
+    "title": "While you're here",
+    "lede": "A few places to explore next:",
+    "primaryCta": "Back to Home",
+    "secondaryCta": "Explore the Four Pillars",
+    "linkCta": "Read the Statement of Faith",
+    "footerNote": "Didn't mean to send that? No problem—just reply to our email or reach out again through the Contact page."
+  }
+}

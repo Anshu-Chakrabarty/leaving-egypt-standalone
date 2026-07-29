@@ -1,13 +1,45 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import meta from '../content/pages/thank-you.json';
-import bodyRaw from '../content/bodies/thank-you.md?raw';
-import { stripFrontmatter } from '../lib/content';
-
-const body = stripFrontmatter(bodyRaw);
+import copy from '../content/copy/thank-you.json';
 ---
 
-<BaseLayout title={meta.title} description={meta.description} path={meta.path}
-  robots="noindex, follow">
-  <main id="main" set:html={body} />
+<BaseLayout
+  title={meta.title}
+  description={meta.description}
+  path={meta.path}
+  robots="noindex, follow"
+>
+  <main id="main">
+    <section class="page-hero page-hero--center">
+      <div class="page-hero__sky" aria-hidden="true"></div>
+      <div class="wrap--narrow page-hero__inner" data-reveal style="text-align: center">
+        <div class="success-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 6L9 17l-5-5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <p class="eyebrow eyebrow--center" style="margin-top: 1rem">{copy.hero.eyebrow}</p>
+        <h1>{copy.hero.title}</h1>
+        <p class="lede">{copy.hero.lede}</p>
+      </div>
+    </section>
+
+    <div class="horizon" aria-hidden="true">
+      <svg viewBox="0 0 1440 80" preserveAspectRatio="none"><path d="M0 60 C 240 10, 480 70, 720 40 C 960 12, 1200 66, 1440 30 L1440 80 L0 80 Z" fill="currentColor"/></svg>
+    </div>
+
+    <section class="section section--tight">
+      <div class="wrap--narrow" data-reveal style="text-align: center">
+        <h2>{copy.next.title}</h2>
+        <p class="mt-1 muted">{copy.next.lede}</p>
+        <div class="btn-row btn-row--center mt-2">
+          <a class="btn btn--primary" href="/">{copy.next.primaryCta}</a>
+          <a class="btn btn--ghost" href="/pillars">{copy.next.secondaryCta}</a>
+        </div>
+        <p class="mt-2">
+          <a class="arrow-link" href="/statement-of-faith">{copy.next.linkCta} <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </p>
+        <p class="muted mt-3" style="font-size: var(--step--1)">{copy.next.footerNote}</p>
+      </div>
+    </section>
+  </main>
 </BaseLayout>

@@ -1,0 +1,33 @@
+{
+  "title": "Accessibility Statement | Leaving Egypt",
+  "hero": {
+    "eyebrow": "Accessibility Statement",
+    "title": "We want this site to work for everyone.",
+    "lede": "Accessibility matters to us. Here's our commitment and how to reach us if something isn't working for you."
+  },
+  "draftBanner": "This statement reflects our current, good-faith approach. Update it as the website is tested and improved over time.",
+  "effectiveDate": "Add effective date",
+  "lastUpdated": "Add effective date",
+  "sections": [
+    {
+      "id": "commitment",
+      "heading": "Our Commitment",
+      "body": "We're committed to making this website usable for as many people as possible, including people who rely on assistive technology. We view accessibility as an ongoing effort, not a one-time task."
+    },
+    {
+      "id": "standard",
+      "heading": "Standard We Aim For",
+      "body": "We aim to meet the Web Content Accessibility Guidelines (WCAG) 2.2 Level AA where reasonably possible. This includes clear heading structure, keyboard-accessible navigation, visible focus states, sufficient color contrast, descriptive links, proper form labels, alt text for meaningful images, and support for reduced-motion preferences."
+    },
+    {
+      "id": "no-guarantee",
+      "heading": "No Guarantee of Perfection",
+      "body": "While we work toward these goals, we can't guarantee that every page is fully accessible at all times, or that it works perfectly with every device or assistive technology. We're always working to improve."
+    },
+    {
+      "id": "feedback",
+      "heading": "Reporting a Barrier",
+      "body": "If you run into an accessibility barrier on this website, please tell us so we can fix it. Email [CONTACT EMAIL] with the page and a short description of the problem, and we'll do our best to help and to address it."
+    }
+  ]
+}

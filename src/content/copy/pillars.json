@@ -1,0 +1,159 @@
+{
+  "title": "The Four Pillars — Faith, Family, Fitness & Finance | Leaving Egypt",
+  "hero": {
+    "eyebrow": "The Four Pillars",
+    "title": "Four pillars that hold up a whole life.",
+    "lede": "Faith, Family, Fitness, and Finance aren't separate scorecards. They lean on one another—grow in one, and the others get steadier too."
+  },
+  "intro": {
+    "eyebrow": "How to read this page",
+    "title": "One man, four connected areas",
+    "body": "It's tempting to treat these like a checklist—or worse, like a measure of whether you're a \"good man.\" That's not how they work. The pillars support each other. When your faith is steadier, you show up better at home. When your body is cared for, you have more to give. None of them is a verdict on your worth. Each is simply an area where honest, ongoing growth changes real life."
+  },
+  "faith": {
+    "eyebrow": "Pillar 1 of 4",
+    "title": "Faith — From knowing about God to walking with Him.",
+    "why": "Faith is the foundation the other three pillars rest on. When a man's relationship with God is alive and honest, it steadies everything else—how he loves his family, cares for his body, and handles his money. Faith here isn't about having the right answers. It's about knowing God, trusting Him, and letting that trust shape ordinary days.",
+    "struggles": [
+      "Believing the truth but rarely living it",
+      "Prayer that feels dry, rushed, or absent",
+      "Reading Scripture only in a crisis, if at all",
+      "Carrying guilt that keeps you at a distance from God",
+      "Faith that stays at church and never comes home"
+    ],
+    "growth": [
+      "A simple, repeatable rhythm of prayer",
+      "Reading Scripture in a way you actually understand",
+      "Confessing honestly instead of hiding",
+      "Letting God—not your performance—define your identity",
+      "Worship that shows up on a Tuesday, not just a Sunday"
+    ],
+    "steps": [
+      "Set a fixed five-minute time to pray each morning",
+      "Read one short passage and write down one thing it says about God",
+      "Tell one trusted brother the thing you'd rather keep hidden",
+      "Replace one scroll session with a Psalm"
+    ],
+    "verse": {
+      "text": "Now faith is the substance of things hoped for, the evidence of things not seen.",
+      "citation": "Hebrews 11:1 (KJV)"
+    },
+    "reflect": [
+      "Where does my life not yet match what I say I believe?",
+      "When did I last talk to God about something that actually scares me?",
+      "What would change if I truly believed what God says about me?"
+    ],
+    "cta": "Talk with us about faith"
+  },
+  "family": {
+    "eyebrow": "Pillar 2 of 4",
+    "title": "Family — Be someone your people can count on.",
+    "why": "For most men, family is where character is tested daily. Your wife, children, parents, and closest people don't need a perfect man—they need a present, trustworthy one. This pillar is about learning to lead by serving: showing up with patience, listening more than you defend, and being the same man at home that you are anywhere else.",
+    "struggles": [
+      "Being physically present but emotionally checked out",
+      "Reacting in anger and calling it honesty",
+      "Letting work quietly take the best of your energy",
+      "Avoiding hard conversations instead of leading them",
+      "Waiting for family to change before you do"
+    ],
+    "growth": [
+      "Listening without rushing to fix or defend",
+      "Owning your part and apologizing quickly",
+      "Guarding real time for the people closest to you",
+      "Leading with gentleness and steadiness, not control",
+      "Praying with and for your family"
+    ],
+    "steps": [
+      "Put your phone in another room during dinner",
+      "Ask your spouse or child one open question and just listen",
+      "Apologize for one specific thing without adding a \"but\"",
+      "Block one recurring, protected hour for family each week"
+    ],
+    "verse": {
+      "text": "As for me and my house, we will serve the LORD.",
+      "citation": "Joshua 24:15 (KJV)"
+    },
+    "reflect": [
+      "Who in my home most needs me to be present this week?",
+      "Where do I need to apologize and haven't?",
+      "Am I leading my family with service, or managing them with control?"
+    ],
+    "cta": "Talk with us about family"
+  },
+  "fitness": {
+    "eyebrow": "Pillar 3 of 4",
+    "title": "Fitness — Steward the body you were given.",
+    "why": "Your body is a gift and a responsibility. This pillar isn't about a certain look, a number on a scale, or comparing yourself to anyone. It's about caring for your health so you have the energy and resilience to love and serve the people around you—sustainably, over the long haul. Small, steady habits beat short bursts of intensity every time.",
+    "struggles": [
+      "All-or-nothing cycles that never last",
+      "Running on poor sleep and too much caffeine",
+      "Using exhaustion as proof of hard work",
+      "Neglecting health until something forces the issue",
+      "Tying your worth to your appearance"
+    ],
+    "growth": [
+      "Sustainable movement you can keep up",
+      "Better sleep and honest rest",
+      "Eating in a way that fuels rather than numbs",
+      "Strength and stamina for daily life",
+      "Caring for the body without worshiping it"
+    ],
+    "steps": [
+      "Take a 20-minute walk most days",
+      "Set a consistent bedtime for one week",
+      "Swap one daily habit that drains you for one that restores you",
+      "Schedule the checkup you've been putting off"
+    ],
+    "verse": {
+      "text": "Your body is the temple of the Holy Ghost which is in you.",
+      "citation": "1 Corinthians 6:19 (KJV)"
+    },
+    "reflect": [
+      "Am I caring for my body, or just pushing it until it breaks?",
+      "What one small habit would give me more energy for the people I love?",
+      "Where has comparison crept into how I see my body?"
+    ],
+    "cta": "Talk with us about fitness"
+  },
+  "finance": {
+    "eyebrow": "Pillar 4 of 4",
+    "title": "Finance — Handle work and money with wisdom and honesty.",
+    "why": "How a man handles money reveals a lot about what he trusts. This pillar is about stewardship—managing what you've been given with integrity, generosity, and a clear conscience. It is not about getting rich, growing a business, or reaching some finish line of \"financial freedom.\" It's about being trustworthy with what's already in your hands.",
+    "struggles": [
+      "Spending to soothe stress or prove something",
+      "Avoiding the numbers because they cause anxiety",
+      "Letting debt or secrecy strain your relationships",
+      "Measuring your worth by your income",
+      "Generosity that never quite happens"
+    ],
+    "growth": [
+      "An honest, simple picture of your money",
+      "Contentment that loosens money's grip on you",
+      "Consistent, planned generosity",
+      "Integrity in work, big and small",
+      "Peace and shared clarity with your spouse"
+    ],
+    "steps": [
+      "Write down what you actually spent last month",
+      "Give something intentionally, even if it's small",
+      "Have one honest money conversation with your spouse",
+      "Name one purchase you make to soothe stress—and pause it for a week"
+    ],
+    "verse": {
+      "text": "Godliness with contentment is great gain.",
+      "citation": "1 Timothy 6:6 (KJV)"
+    },
+    "reflect": [
+      "What am I really trusting money to do for me?",
+      "Where is there secrecy or shame around my finances?",
+      "What would generous, honest stewardship look like this month?"
+    ],
+    "cta": "Talk with us about finance"
+  },
+  "finalCta": {
+    "eyebrow": "Start where you are",
+    "title": "Pick one pillar and take one step",
+    "lede": "You don't have to fix everything at once. Tell us where you'd like to begin.",
+    "cta": "Begin Your Journey"
+  }
+}
