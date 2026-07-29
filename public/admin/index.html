@@ -11,17 +11,13 @@
     <div id="login-view" class="login-view">
       <div class="login-card">
         <h1>Leaving Egypt</h1>
-        <p class="sub">Content admin — sign in to edit the website.</p>
+        <p class="sub">Sign in to edit website content.</p>
         <div class="err" id="login-err"></div>
         <form id="login-form">
           <label for="password">Password</label>
           <input id="password" type="password" autocomplete="current-password" required autofocus />
           <button type="submit" class="btn-primary">Sign in</button>
         </form>
-        <p class="sub" style="margin:1rem 0 0;font-size:0.85rem">
-          Password must match <code>CMS_PASSWORD</code> in Vercel.
-          After you change it there, open <strong>Deployments → Redeploy</strong>.
-        </p>
       </div>
     </div>
 
@@ -47,7 +43,7 @@
           <div id="editor-empty" class="empty">Select a page on the left to edit.</div>
           <div id="editor-panel" hidden>
             <h2 id="editor-title"></h2>
-            <p class="hint">Edit the text below, then click <strong>Save &amp; Publish</strong> (top right). The live site updates in about 1–2 minutes.</p>
+            <p class="hint">Edit the text, then click <strong>Save &amp; Publish</strong> at the top right.</p>
             <form id="editor-form"></form>
           </div>
         </main>
@@ -57,6 +53,6 @@
     <noscript>
       <p style="color:#8b1e1e;text-align:center;padding:2rem">JavaScript is required to sign in.</p>
     </noscript>
-    <script src="/admin/admin.js?v=3" defer></script>
+    <script src="/admin/admin.js?v=4" defer></script>
   </body>
 </html>

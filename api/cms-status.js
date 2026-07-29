@@ -17,10 +17,8 @@ export default async function handler(req, res) {
     JSON.stringify({
       hasPassword: Boolean(expected),
       passwordLength: expected.length,
-      // Egypt@2025 should be length 10
-      expectedForEgypt2025: 10,
-      lengthMatchesEgypt2025: expected.length === 10,
       hasGithubToken: Boolean(token),
+      tokenLooksValid: token.length >= 20,
       tokenLength: token.length,
     })
   );

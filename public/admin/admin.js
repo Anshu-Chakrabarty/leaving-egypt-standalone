@@ -233,11 +233,7 @@ loginForm.addEventListener('submit', async (event) => {
     });
     const data = await res.json().catch(() => ({}));
     if (!res.ok) {
-      const extra =
-        data.debug && typeof data.debug.typedLength === 'number'
-          ? ` (you typed ${data.debug.typedLength} chars; Vercel has ${data.debug.configuredLength} chars)`
-          : '';
-      showLoginError((data.error || 'Wrong password.') + extra);
+      showLoginError(data.error || 'Wrong password.');
       return;
     }
     password = value;

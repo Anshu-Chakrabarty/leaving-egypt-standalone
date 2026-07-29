@@ -61,13 +61,13 @@ export default async function handler(req, res) {
 
     if (!expected) {
       return send(res, 503, {
-        error: 'CMS_PASSWORD missing in Vercel env. Add it and Redeploy.',
+        error: 'Editor access is not fully configured. Ask the site owner for help.',
         code: 'NO_PASSWORD_ENV',
       });
     }
-    if (!token) {
+    if (!token || token.length < 20) {
       return send(res, 503, {
-        error: 'CMS_GITHUB_TOKEN missing in Vercel env. Add it and Redeploy.',
+        error: 'Editor access is not fully configured. Ask the site owner to check the GitHub token setting.',
         code: 'NO_TOKEN_ENV',
       });
     }
@@ -75,7 +75,6 @@ export default async function handler(req, res) {
       return send(res, 401, {
         error: 'Wrong password.',
         code: 'INVALID_PASSWORD',
-        debug: { typedLength: given.length, configuredLength: expected.length },
       });
     }
 
