@@ -113,6 +113,7 @@ backend:
   repo: Anshu-Chakrabarty/leaving-egypt-standalone
   branch: main
   auth_methods: [token]
+  skip_ci: false
 
 media_folder: public/assets/images/uploads
 public_folder: /assets/images/uploads
