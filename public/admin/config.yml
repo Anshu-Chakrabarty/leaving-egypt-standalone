@@ -1,20 +1,14 @@
 # yaml-language-server: $schema=https://unpkg.com/@sveltia/cms/schema/sveltia-cms.json
-# Sveltia CMS — WordPress-like editing for this static site.
-# Login: GitHub (PAT for quick start, or OAuth authenticator for the whole team).
-# Docs: https://sveltiacms.app/en/docs/start
+# Sveltia CMS — normal text fields for editors (no raw HTML).
 
 backend:
   name: github
   repo: Anshu-Chakrabarty/leaving-egypt-standalone
   branch: main
-  # Password gate is on /admin (custom). CMS itself uses token auth only.
   auth_methods: [token]
 
 media_folder: public/assets/images/uploads
 public_folder: /assets/images/uploads
-
-# Local editing without GitHub: use Sveltia's local workflow while `npm run dev` is running.
-# See https://sveltiacms.app/en/docs/workflows/local
 
 collections:
   - name: settings
@@ -48,10 +42,10 @@ collections:
     create: false
     slug: "{{slug}}"
     fields:
-      - { label: Slug, name: slug, widget: string }
+      - { label: Slug, name: slug, widget: hidden }
       - { label: Browser Title, name: title, widget: string }
       - { label: Meta Description, name: description, widget: text }
-      - { label: Path, name: path, widget: string }
+      - { label: Path, name: path, widget: hidden }
 
   - name: faq
     label: FAQ
@@ -66,17 +60,4 @@ collections:
             summary: "{{fields.question}}"
             fields:
               - { label: Question, name: question, widget: string }
-              - { label: Answer (HTML allowed), name: answer, widget: text }
-
-  - name: page_bodies
-    label: Page Content
-    label_singular: Page Body
-    description: Full page body markup (HTML inside Markdown files). Prefer FAQ / Site Settings for simpler edits.
-    folder: src/content/bodies
-    extension: md
-    format: yaml-frontmatter
-    create: false
-    slug: "{{slug}}"
-    fields:
-      - { label: Title, name: title, widget: string }
-      - { label: Body (HTML), name: body, widget: text }
+              - { label: Answer, name: answer, widget: text, hint: "Write normal sentences. For a link use: [Privacy Policy](/privacy)" }

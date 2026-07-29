@@ -2,8 +2,12 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import meta from '../content/pages/faq.json';
 import faqData from '../content/faq/items.json';
+import { plainTextToHtml } from '../lib/plainText';
 
-const items = faqData.items;
+const items = faqData.items.map((item) => ({
+  ...item,
+  answerHtml: plainTextToHtml(item.answer),
+}));
 ---
 
 <BaseLayout title={meta.title} description={meta.description} path={meta.path}>
@@ -40,7 +44,7 @@ const items = faqData.items;
                 </button>
               </h3>
               <div class="accordion__panel" id={`fq-${i}`} role="region" aria-labelledby={`fqt-${i}`}>
-                <div class="accordion__panel-inner" set:html={item.answer} />
+                <div class="accordion__panel-inner" set:html={item.answerHtml} />
               </div>
             </div>
           ))}
