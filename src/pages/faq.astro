@@ -1,0 +1,65 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import meta from '../content/pages/faq.json';
+import faqData from '../content/faq/items.json';
+
+const items = faqData.items;
+---
+
+<BaseLayout title={meta.title} description={meta.description} path={meta.path}>
+  <main id="main">
+    <section class="page-hero">
+      <div class="page-hero__sky" aria-hidden="true"></div>
+      <div class="wrap page-hero__inner">
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+          <ol>
+            <li><a href="/">Home</a></li>
+            <li aria-current="page">FAQ</li>
+          </ol>
+        </nav>
+        <p class="eyebrow" style="margin-top:1rem">Frequently Asked Questions</p>
+        <h1 style="color: #fff;">Honest answers to the questions men actually ask.</h1>
+        <p class="lede">If you don’t see your question here, reach out—we’d rather answer directly than leave you guessing.</p>
+      </div>
+    </section>
+
+    <section class="section section--tight">
+      <div class="wrap--narrow">
+        <div class="accordion" data-reveal>
+          {items.map((item, i) => (
+            <div class="accordion__item">
+              <h3 style="margin:0">
+                <button
+                  class="accordion__trigger"
+                  aria-expanded={i === 0 ? 'true' : 'false'}
+                  aria-controls={`fq-${i}`}
+                  id={`fqt-${i}`}
+                >
+                  {item.question}
+                  <svg class="accordion__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14" stroke-linecap="round"/></svg>
+                </button>
+              </h3>
+              <div class="accordion__panel" id={`fq-${i}`} role="region" aria-labelledby={`fqt-${i}`}>
+                <div class="accordion__panel-inner" set:html={item.answer} />
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <div class="horizon" aria-hidden="true"><svg viewBox="0 0 1440 80" preserveAspectRatio="none"><path d="M0 60 C 240 10, 480 70, 720 40 C 960 12, 1200 66, 1440 30 L1440 80 L0 80 Z" fill="currentColor"/></svg></div>
+
+    <section class="section section--sand">
+      <div class="wrap--narrow" data-reveal style="text-align:center">
+        <p class="eyebrow eyebrow--center">Still wondering?</p>
+        <h2>Ask us anything</h2>
+        <p class="lede">No question is too small. We’re glad to talk it through.</p>
+        <div class="btn-row btn-row--center">
+          <a class="btn btn--primary" href="/contact">Contact Us</a>
+          <a class="btn btn--ghost" href="/contact#interest">Begin Your Journey</a>
+        </div>
+      </div>
+    </section>
+  </main>
+</BaseLayout>

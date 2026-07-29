@@ -1,0 +1,12 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import meta from '../content/pages/about.json';
+import bodyRaw from '../content/bodies/about.html?raw';
+import { stripFrontmatter } from '../lib/content';
+
+const body = stripFrontmatter(bodyRaw);
+---
+
+<BaseLayout title={meta.title} description={meta.description} path={meta.path}>
+  <main id="main" set:html={body} />
+</BaseLayout>

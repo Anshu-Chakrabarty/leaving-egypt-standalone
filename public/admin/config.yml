@@ -1,0 +1,83 @@
+# yaml-language-server: $schema=https://unpkg.com/@sveltia/cms/schema/sveltia-cms.json
+# Sveltia CMS — WordPress-like editing for this static site.
+# Login: GitHub (PAT for quick start, or OAuth authenticator for the whole team).
+# Docs: https://sveltiacms.app/en/docs/start
+
+backend:
+  name: github
+  repo: Anshu-Chakrabarty/leaving-egypt-standalone
+  branch: main
+  # For team login (recommended): deploy Sveltia CMS Authenticator (Cloudflare Worker)
+  # then uncomment and set:
+  # base_url: https://YOUR-AUTHENTICATOR.workers.dev
+
+media_folder: public/assets/images/uploads
+public_folder: /assets/images/uploads
+
+# Local editing without GitHub: use Sveltia's local workflow while `npm run dev` is running.
+# See https://sveltiacms.app/en/docs/workflows/local
+
+collections:
+  - name: settings
+    label: Site Settings
+    files:
+      - name: site
+        label: Site Settings
+        file: src/content/settings/site.json
+        fields:
+          - { label: Organization Name, name: orgName, widget: string }
+          - { label: Tagline, name: tagline, widget: string }
+          - { label: Short Mission, name: shortMission, widget: text }
+          - { label: Footer Mission, name: footerMission, widget: text }
+          - { label: Domain (https://...), name: domain, widget: string }
+          - { label: Form Recipient Email, name: formEmail, widget: string }
+          - { label: Phone, name: phone, widget: string, required: false }
+          - { label: Mailing Address, name: mailingAddress, widget: string, required: false }
+          - label: Social Links
+            name: social
+            widget: object
+            fields:
+              - { label: Instagram URL, name: instagram, widget: string }
+              - { label: Facebook URL, name: facebook, widget: string }
+              - { label: YouTube URL, name: youtube, widget: string }
+
+  - name: page_meta
+    label: Page SEO
+    label_singular: Page
+    folder: src/content/pages
+    extension: json
+    create: false
+    slug: "{{slug}}"
+    fields:
+      - { label: Slug, name: slug, widget: string }
+      - { label: Browser Title, name: title, widget: string }
+      - { label: Meta Description, name: description, widget: text }
+      - { label: Path, name: path, widget: string }
+
+  - name: faq
+    label: FAQ
+    files:
+      - name: faq_items
+        label: FAQ Items
+        file: src/content/faq/items.json
+        fields:
+          - label: Questions
+            name: items
+            widget: list
+            summary: "{{fields.question}}"
+            fields:
+              - { label: Question, name: question, widget: string }
+              - { label: Answer (HTML allowed), name: answer, widget: text }
+
+  - name: page_bodies
+    label: Page Content
+    label_singular: Page Body
+    description: Full page body markup (HTML). Prefer FAQ / Site Settings for simpler edits. Edit HTML carefully.
+    folder: src/content/bodies
+    extension: html
+    format: yaml-frontmatter
+    create: false
+    slug: "{{slug}}"
+    fields:
+      - { label: Title, name: title, widget: string }
+      - { label: Body (HTML), name: body, widget: text }

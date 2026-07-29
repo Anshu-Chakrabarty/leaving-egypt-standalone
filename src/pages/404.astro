@@ -1,0 +1,43 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Page Not Found (404) | Leaving Egypt"
+  description="The page you're looking for couldn't be found. Head back home or explore the Four Pillars, Brotherhood, Resources, and more."
+  robots="noindex, follow"
+  path="/404"
+>
+<main id="main">
+  <section class="error-hero">
+    <div class="error-hero__sky" aria-hidden="true"></div>
+    <div class="wrap--narrow error-hero__inner" data-reveal>
+      <p class="error-hero__code" aria-hidden="true">404</p>
+      <p class="eyebrow eyebrow--center">This path leads nowhere</p>
+      <h1>We couldn&rsquo;t find that page</h1>
+      <p class="lede">The page you&rsquo;re looking for may have moved or never existed. Let&rsquo;s get you back on
+        solid ground.</p>
+      <div class="btn-row btn-row--center mt-2">
+        <a class="btn btn--primary" href="/">Go to Home</a>
+        <a class="btn btn--ghost" href="/contact">Contact Us</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="horizon" aria-hidden="true"><svg viewBox="0 0 1440 80" preserveAspectRatio="none"><path d="M0 70 L180 30 L360 58 L560 18 L760 54 L980 22 L1200 60 L1440 34 L1440 80 L0 80 Z" fill="currentColor"/></svg></div>
+
+  <section class="section section--tight">
+    <div class="wrap" data-reveal>
+      <div class="section-head"><h2>Popular pages</h2></div>
+      <div class="link-grid">
+        <a class="link-card" href="/about"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z" stroke-linejoin="round"/></svg></span><div><strong>About</strong><p>Who we are and why we exist.</p></div></a>
+        <a class="link-card" href="/pillars"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 19C5 11 11 5 19 5c0 8-6 14-14 14z" stroke-linejoin="round"/><path d="M9 15c2-3 4-5 8-7" stroke-linecap="round"/></svg></span><div><strong>The Four Pillars</strong><p>Faith, Family, Fitness, Finance.</p></div></a>
+        <a class="link-card" href="/programs"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3.3 2.7-5 6-5s6 1.7 6 5"/><path d="M16 6a3 3 0 010 6M21 20c0-2.8-1.6-4.4-4-4.9"/></svg></span><div><strong>Brotherhood</strong><p>How men grow together.</p></div></a>
+        <a class="link-card" href="/resources"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 5c3-1 6-1 8 0v14c-2-1-5-1-8 0z"/><path d="M20 5c-3-1-6-1-8 0v14c2-1 5-1 8 0z"/></svg></span><div><strong>Resources</strong><p>Articles and tools.</p></div></a>
+        <a class="link-card" href="/faq"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2 5-5 2 2-5z" stroke-linejoin="round"/></svg></span><div><strong>FAQ</strong><p>Common questions answered.</p></div></a>
+        <a class="link-card" href="/contact#interest"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg></span><div><strong>Begin Your Journey</strong><p>Take a first step.</p></div></a>
+      </div>
+    </div>
+  </section>
+</main>
+</BaseLayout>

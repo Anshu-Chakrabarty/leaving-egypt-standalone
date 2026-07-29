@@ -1,0 +1,13 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import meta from '../content/pages/thank-you.json';
+import bodyRaw from '../content/bodies/thank-you.html?raw';
+import { stripFrontmatter } from '../lib/content';
+
+const body = stripFrontmatter(bodyRaw);
+---
+
+<BaseLayout title={meta.title} description={meta.description} path={meta.path}
+  robots="noindex, follow">
+  <main id="main" set:html={body} />
+</BaseLayout>

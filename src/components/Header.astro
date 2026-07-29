@@ -1,0 +1,40 @@
+---
+import BrandMark from './BrandMark.astro';
+import { navLinks } from '../config/site';
+import siteSettings from '../content/settings/site.json';
+
+const pathname = Astro.url.pathname.replace(/\/$/, '') || '/';
+---
+
+<header class="site-header">
+  <div class="wrap site-header__inner">
+    <a class="brand" href="/" aria-label={`${siteSettings.orgName} — home`}>
+      <BrandMark />
+      <span class="brand__text">
+        <span class="brand__name">{siteSettings.orgName}</span>
+        <span class="brand__tag">{siteSettings.tagline}</span>
+      </span>
+    </a>
+    <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="primary-nav" aria-label="Open menu">
+      <svg class="icon-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke-linecap="round"/></svg>
+      <svg class="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke-linecap="round"/></svg>
+    </button>
+    <nav class="nav" id="primary-nav" aria-label="Primary" data-open="false">
+      <ul class="nav__list">
+        {navLinks.map((link) => {
+          const current = link.href === pathname;
+          return (
+            <li>
+              <a class="nav__link" href={link.href} aria-current={current ? 'page' : undefined}>
+                {link.label}
+              </a>
+            </li>
+          );
+        })}
+      </ul>
+      <div class="nav__cta">
+        <a class="btn btn--primary" href="/contact#interest">Begin Your Journey</a>
+      </div>
+    </nav>
+  </div>
+</header>
