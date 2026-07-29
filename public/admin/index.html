@@ -5,180 +5,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="robots" content="noindex" />
     <title>Content Admin | Leaving Egypt</title>
-    <style>
-      :root {
-        --ink: #14110e;
-        --soil: #2a2118;
-        --sand: #f3ebe0;
-        --line: #d9cfc2;
-      }
-      * { box-sizing: border-box; }
-      body {
-        margin: 0;
-        min-height: 100vh;
-        font-family: "Libre Franklin", system-ui, sans-serif;
-        background:
-          radial-gradient(ellipse at top, #fff8ef 0%, var(--sand) 55%, #e8dccb 100%);
-        color: var(--ink);
-      }
-      .gate {
-        max-width: 400px;
-        margin: 0 auto;
-        padding: 4rem 1.25rem;
-      }
-      .brand {
-        font-family: Georgia, "Times New Roman", serif;
-        font-size: 1.75rem;
-        margin: 0 0 0.35rem;
-      }
-      .sub { color: #5c5248; margin: 0 0 1.75rem; line-height: 1.45; }
-      .card {
-        background: #fffdf9;
-        border: 1px solid var(--line);
-        border-radius: 12px;
-        padding: 1.35rem;
-      }
-      label { display: block; font-size: 0.9rem; margin-bottom: 0.35rem; }
-      input {
-        width: 100%;
-        padding: 0.75rem 0.85rem;
-        border: 1px solid var(--line);
-        border-radius: 8px;
-        font: inherit;
-        margin-bottom: 0.85rem;
-        background: #fff;
-      }
-      button {
-        width: 100%;
-        border: 0;
-        border-radius: 8px;
-        padding: 0.8rem 1rem;
-        font: inherit;
-        font-weight: 600;
-        cursor: pointer;
-        background: var(--soil);
-        color: #fff;
-      }
-      button:disabled { opacity: 0.7; cursor: wait; }
-      .err {
-        color: #8b1e1e;
-        background: #fdecec;
-        border: 1px solid #f0c2c2;
-        border-radius: 8px;
-        padding: 0.65rem 0.75rem;
-        margin-bottom: 0.85rem;
-        font-size: 0.92rem;
-        display: none;
-      }
-      .err.show { display: block; }
-      #cms-root { display: none; min-height: 100vh; }
-      body.cms-ready .gate { display: none; }
-      body.cms-ready #cms-root { display: block; }
-    </style>
+    <link rel="stylesheet" href="/admin/admin.css" />
   </head>
   <body>
-    <div class="gate" id="gate">
-      <p class="brand">Leaving Egypt</p>
-      <p class="sub">Content admin — sign in to edit the website.</p>
-
-      <div class="card">
-        <div class="err" id="pw-err"></div>
-        <form id="pw-form">
+    <div id="login-view" class="login-view">
+      <div class="login-card">
+        <h1>Leaving Egypt</h1>
+        <p class="sub">Content admin — sign in to edit the website.</p>
+        <div class="err" id="login-err"></div>
+        <form id="login-form">
           <label for="password">Password</label>
-          <input id="password" name="password" type="password" autocomplete="current-password" required autofocus />
-          <button type="submit">Sign in</button>
+          <input id="password" type="password" autocomplete="current-password" required autofocus />
+          <button type="submit" class="btn-primary">Sign in</button>
         </form>
       </div>
     </div>
 
-    <div id="cms-root"></div>
+    <div id="app-view" class="app-view" hidden>
+      <header class="topbar">
+        <div class="topbar-left">
+          <strong>Leaving Egypt</strong>
+          <span class="muted">Content Admin</span>
+        </div>
+        <div class="topbar-right">
+          <span id="status" class="status"></span>
+          <button type="button" id="btn-save" class="btn-publish" disabled>Save &amp; Publish</button>
+          <button type="button" id="btn-logout" class="btn-ghost">Sign out</button>
+        </div>
+      </header>
 
-    <script>
-      const USER_KEY = 'sveltia-cms.user';
+      <div class="layout">
+        <aside class="sidebar">
+          <p class="side-label">Pages</p>
+          <nav id="nav"></nav>
+        </aside>
+        <main class="editor">
+          <div id="editor-empty" class="empty">Select a page on the left to edit.</div>
+          <div id="editor-panel" hidden>
+            <h2 id="editor-title"></h2>
+            <p class="hint">Edit the text below, then click <strong>Save &amp; Publish</strong> (top right). The live site updates in about 1–2 minutes.</p>
+            <form id="editor-form"></form>
+          </div>
+        </main>
+      </div>
+    </div>
 
-      function showError(message) {
-        const el = document.getElementById('pw-err');
-        el.textContent = message;
-        el.classList.add('show');
-      }
-
-      async function saveSessionAndLoadCms(token) {
-        localStorage.setItem(
-          USER_KEY,
-          JSON.stringify({ backendName: 'github', token })
-        );
-        await loadCms();
-      }
-
-      async function loadCms() {
-        document.body.classList.add('cms-ready');
-        if (window.__CMS_LOADED) {
-          location.reload();
-          return;
-        }
-        window.__CMS_LOADED = true;
-
-        const tip = document.createElement('div');
-        tip.id = 'save-tip';
-        tip.style.cssText =
-          'position:fixed;bottom:16px;left:50%;transform:translateX(-50%);z-index:99999;background:#2a2118;color:#fff;padding:10px 16px;border-radius:999px;font:600 14px/1.3 system-ui,sans-serif;box-shadow:0 8px 24px rgba(0,0,0,.25);';
-        tip.textContent = 'To save & deploy: press Ctrl+S (or click Save / Publish at the top)';
-        document.body.appendChild(tip);
-        setTimeout(() => tip.remove(), 12000);
-
-        const script = document.createElement('script');
-        script.src = 'https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js';
-        script.type = 'module';
-        document.body.appendChild(script);
-      }
-
-      async function tryExistingSession() {
-        try {
-          const raw = localStorage.getItem(USER_KEY);
-          if (!raw) return false;
-          const user = JSON.parse(raw);
-          if (
-            user?.backendName === 'github' &&
-            typeof user.token === 'string' &&
-            user.token.length > 10
-          ) {
-            await loadCms();
-            return true;
-          }
-        } catch {
-          /* ignore */
-        }
-        return false;
-      }
-
-      document.getElementById('pw-form').addEventListener('submit', async (event) => {
-        event.preventDefault();
-        document.getElementById('pw-err').classList.remove('show');
-        const password = document.getElementById('password').value;
-        const btn = event.target.querySelector('button');
-        btn.disabled = true;
-        btn.textContent = 'Signing in…';
-        try {
-          const res = await fetch('/api/cms-login', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ password }),
-          });
-          const data = await res.json().catch(() => ({}));
-          if (!res.ok) {
-            showError(data.error || 'Wrong password.');
-            return;
-          }
-          await saveSessionAndLoadCms(data.token);
-        } catch {
-          showError('Network error. Try again.');
-        } finally {
-          btn.disabled = false;
-          btn.textContent = 'Sign in';
-        }
-      });
-
-      tryExistingSession();
-    </script>
+    <script type="module" src="/admin/admin.js"></script>
   </body>
 </html>
