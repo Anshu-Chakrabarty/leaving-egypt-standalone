@@ -41,7 +41,7 @@ function checkPassword(password) {
   const given = cleanSecret(password);
   const token = cleanSecret(process.env.CMS_GITHUB_TOKEN || process.env.GITHUB_TOKEN);
   if (!expected) {
-    return { ok: false, status: 503, error: 'CMS_PASSWORD missing in Vercel.', code: 'NO_PASSWORD_ENV' };
+    return { ok: false, status: 503, error: 'Editor access is not fully configured.', code: 'NO_PASSWORD_ENV' };
   }
   if (!token || token.length < 20) {
     return { ok: false, status: 503, error: 'Editor access is not fully configured.', code: 'NO_TOKEN_ENV' };
