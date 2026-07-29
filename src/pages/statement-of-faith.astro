@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import meta from '../content/pages/statement-of-faith.json';
-import bodyRaw from '../content/bodies/statement-of-faith.html?raw';
+import bodyRaw from '../content/bodies/statement-of-faith.md?raw';
 import { stripFrontmatter } from '../lib/content';
 
 const body = stripFrontmatter(bodyRaw);

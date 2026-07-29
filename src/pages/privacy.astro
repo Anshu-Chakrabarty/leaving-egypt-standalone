@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import meta from '../content/pages/privacy.json';
-import bodyRaw from '../content/bodies/privacy.html?raw';
+import bodyRaw from '../content/bodies/privacy.md?raw';
 import { stripFrontmatter } from '../lib/content';
 
 const body = stripFrontmatter(bodyRaw);

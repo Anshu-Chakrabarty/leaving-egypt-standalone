@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import meta from '../content/pages/contact.json';
-import bodyRaw from '../content/bodies/contact.html?raw';
+import bodyRaw from '../content/bodies/contact.md?raw';
 import { stripFrontmatter } from '../lib/content';
 
 const body = stripFrontmatter(bodyRaw);

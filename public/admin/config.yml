@@ -72,9 +72,9 @@ collections:
   - name: page_bodies
     label: Page Content
     label_singular: Page Body
-    description: Full page body markup (HTML). Prefer FAQ / Site Settings for simpler edits. Edit HTML carefully.
+    description: Full page body markup (HTML inside Markdown files). Prefer FAQ / Site Settings for simpler edits.
     folder: src/content/bodies
-    extension: html
+    extension: md
     format: yaml-frontmatter
     create: false
     slug: "{{slug}}"
