@@ -8,6 +8,9 @@
 }
 
 * { box-sizing: border-box; }
+/* Author display rules (e.g. .login-view { display: grid }) override the
+   native [hidden] stylesheet — force hide so login→editor actually switches. */
+[hidden] { display: none !important; }
 body {
   margin: 0;
   font-family: "Libre Franklin", system-ui, sans-serif;

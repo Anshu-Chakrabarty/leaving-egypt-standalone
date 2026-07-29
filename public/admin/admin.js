@@ -55,6 +55,10 @@ function labelize(key) {
 function showApp() {
   loginView.hidden = true;
   appView.hidden = false;
+  console.log('[CMS login] showApp', {
+    loginHidden: loginView.hidden,
+    appHidden: appView.hidden,
+  });
   renderNav();
 }
 
