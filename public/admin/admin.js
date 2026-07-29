@@ -1,19 +1,4 @@
-const REPO = 'Anshu-Chakrabarty/leaving-egypt-standalone';
-const BRANCH = 'main';
-const TOKEN_KEY = 'le-cms-token';
-
-function decodeBase64(content) {
-  const bin = atob(String(content).replace(/\n/g, ''));
-  const bytes = Uint8Array.from(bin, (c) => c.charCodeAt(0));
-  return new TextDecoder().decode(bytes);
-}
-
-function encodeBase64(str) {
-  const bytes = new TextEncoder().encode(str);
-  let bin = '';
-  for (const b of bytes) bin += String.fromCharCode(b);
-  return btoa(bin);
-}
+const PASS_KEY = 'le-cms-password';
 
 const FILES = [
   { id: 'settings', label: 'Site Settings', path: 'src/content/settings/site.json' },
@@ -45,8 +30,8 @@ const btnSave = document.getElementById('btn-save');
 const btnLogout = document.getElementById('btn-logout');
 const statusEl = document.getElementById('status');
 
-let token = sessionStorage.getItem(TOKEN_KEY) || '';
-let current = null; // { meta, sha, data }
+let password = sessionStorage.getItem(PASS_KEY) || '';
+let current = null;
 let dirty = false;
 
 function setStatus(text, kind = '') {
@@ -74,13 +59,14 @@ function showApp() {
 }
 
 function showLogin() {
-  token = '';
-  sessionStorage.removeItem(TOKEN_KEY);
+  password = '';
+  sessionStorage.removeItem(PASS_KEY);
   current = null;
   dirty = false;
   btnSave.disabled = true;
   appView.hidden = true;
   loginView.hidden = false;
+  document.getElementById('password').value = '';
 }
 
 function renderNav() {
@@ -89,50 +75,21 @@ function renderNav() {
     const btn = document.createElement('button');
     btn.type = 'button';
     btn.textContent = file.label;
-    btn.dataset.id = file.id;
     if (current?.meta?.id === file.id) btn.classList.add('active');
     btn.addEventListener('click', () => openFile(file));
     nav.appendChild(btn);
   }
 }
 
-async function ghGet(path) {
-  const res = await fetch(
-    `https://api.github.com/repos/${REPO}/contents/${path}?ref=${BRANCH}`,
-    {
-      headers: {
-        Authorization: `Bearer ${token}`,
-        Accept: 'application/vnd.github+json',
-      },
-    }
-  );
-  if (!res.ok) {
-    const err = await res.json().catch(() => ({}));
-    throw new Error(err.message || `Could not load ${path}`);
-  }
-  return res.json();
-}
-
-async function ghPut(path, content, sha, message) {
-  const res = await fetch(`https://api.github.com/repos/${REPO}/contents/${path}`, {
-    method: 'PUT',
-    headers: {
-      Authorization: `Bearer ${token}`,
-      Accept: 'application/vnd.github+json',
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      message,
-      content: encodeBase64(content),
-      sha,
-      branch: BRANCH,
-    }),
+async function apiContent(payload) {
+  const res = await fetch('/api/cms-content', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ password, ...payload }),
   });
-  if (!res.ok) {
-    const err = await res.json().catch(() => ({}));
-    throw new Error(err.message || 'Save failed');
-  }
-  return res.json();
+  const data = await res.json().catch(() => ({}));
+  if (!res.ok) throw new Error(data.error || 'Request failed');
+  return data;
 }
 
 function pathKey(parts) {
@@ -141,7 +98,11 @@ function pathKey(parts) {
 
 function collectFields(value, parts = [], out = []) {
   if (typeof value === 'string') {
-    out.push({ path: [...parts], value, multiline: value.includes('\n') || value.length > 90 });
+    out.push({
+      path: [...parts],
+      value,
+      multiline: value.includes('\n') || value.length > 90,
+    });
     return out;
   }
   if (Array.isArray(value)) {
@@ -151,7 +112,7 @@ function collectFields(value, parts = [], out = []) {
           path: [...parts, String(index)],
           value: item,
           multiline: item.length > 90,
-          listLabel: `${labelize(parts[parts.length - 1] || 'item')} #${index + 1}`,
+          listLabel: `${labelize(parts[parts.length - 1] || 'Item')} #${index + 1}`,
         });
       } else if (item && typeof item === 'object') {
         collectFields(item, [...parts, String(index)], out);
@@ -200,14 +161,14 @@ function renderEditor() {
   const fields = collectFields(current.data);
   const groups = groupFields(fields);
 
-  for (const [group, groupFields] of groups) {
+  for (const [group, groupFieldsList] of groups) {
     const section = document.createElement('section');
     section.className = 'section';
     const h = document.createElement('h3');
     h.textContent = group === '_root' ? 'General' : labelize(group);
     section.appendChild(h);
 
-    for (const field of groupFields) {
+    for (const field of groupFieldsList) {
       const wrap = document.createElement('div');
       wrap.className = 'field';
       const label = document.createElement('label');
@@ -247,9 +208,8 @@ async function openFile(meta) {
   try {
     setStatus('Loading…', 'busy');
     btnSave.disabled = true;
-    const file = await ghGet(meta.path);
-    const json = JSON.parse(decodeBase64(file.content));
-    current = { meta, sha: file.sha, data: json };
+    const file = await apiContent({ action: 'get', path: meta.path });
+    current = { meta, sha: file.sha, data: JSON.parse(file.content) };
     dirty = false;
     renderEditor();
     setStatus('Ready');
@@ -261,7 +221,7 @@ async function openFile(meta) {
 loginForm.addEventListener('submit', async (event) => {
   event.preventDefault();
   loginErr.classList.remove('show');
-  const password = document.getElementById('password').value;
+  const value = document.getElementById('password').value.trim();
   const btn = loginForm.querySelector('button');
   btn.disabled = true;
   btn.textContent = 'Signing in…';
@@ -269,15 +229,15 @@ loginForm.addEventListener('submit', async (event) => {
     const res = await fetch('/api/cms-login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ password }),
+      body: JSON.stringify({ password: value }),
     });
     const data = await res.json().catch(() => ({}));
     if (!res.ok) {
       showLoginError(data.error || 'Wrong password.');
       return;
     }
-    token = data.token;
-    sessionStorage.setItem(TOKEN_KEY, token);
+    password = value;
+    sessionStorage.setItem(PASS_KEY, password);
     showApp();
     setStatus('Signed in');
   } catch {
@@ -299,18 +259,23 @@ btnSave.addEventListener('click', async () => {
   setStatus('Publishing…', 'busy');
   try {
     const content = JSON.stringify(current.data, null, 2) + '\n';
-    const message = `Update ${current.meta.label} content via admin`;
-    const result = await ghPut(current.meta.path, content, current.sha, message);
-    current.sha = result.content.sha;
+    const result = await apiContent({
+      action: 'put',
+      path: current.meta.path,
+      content,
+      sha: current.sha,
+      message: `Update ${current.meta.label} content via admin`,
+    });
+    current.sha = result.sha;
     dirty = false;
-    setStatus('Published — site will update in 1–2 min', 'ok');
+    setStatus('Published — site updates in 1–2 min', 'ok');
   } catch (err) {
     setStatus(err.message || 'Publish failed', 'error');
     btnSave.disabled = false;
   }
 });
 
-if (token) {
+if (password) {
   showApp();
   setStatus('Signed in');
 }
