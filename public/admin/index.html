@@ -10,7 +10,6 @@
         --ink: #14110e;
         --soil: #2a2118;
         --sand: #f3ebe0;
-        --bronze: #b08d57;
         --line: #d9cfc2;
       }
       * { box-sizing: border-box; }
@@ -23,9 +22,9 @@
         color: var(--ink);
       }
       .gate {
-        max-width: 420px;
+        max-width: 400px;
         margin: 0 auto;
-        padding: 3rem 1.25rem;
+        padding: 4rem 1.25rem;
       }
       .brand {
         font-family: Georgia, "Times New Roman", serif;
@@ -37,14 +36,7 @@
         background: #fffdf9;
         border: 1px solid var(--line);
         border-radius: 12px;
-        padding: 1.25rem;
-        margin-bottom: 1rem;
-      }
-      .card h2 {
-        margin: 0 0 0.75rem;
-        font-size: 1rem;
-        letter-spacing: 0.04em;
-        text-transform: uppercase;
+        padding: 1.35rem;
       }
       label { display: block; font-size: 0.9rem; margin-bottom: 0.35rem; }
       input {
@@ -67,12 +59,7 @@
         background: var(--soil);
         color: #fff;
       }
-      button.secondary {
-        background: transparent;
-        color: var(--soil);
-        border: 1px solid var(--line);
-        margin-top: 0.5rem;
-      }
+      button:disabled { opacity: 0.7; cursor: wait; }
       .err {
         color: #8b1e1e;
         background: #fdecec;
@@ -84,8 +71,6 @@
         display: none;
       }
       .err.show { display: block; }
-      .hint { font-size: 0.85rem; color: #6a5f54; line-height: 1.4; margin: 0.75rem 0 0; }
-      .hint a { color: var(--bronze); }
       #cms-root { display: none; min-height: 100vh; }
       body.cms-ready .gate { display: none; }
       body.cms-ready #cms-root { display: block; }
@@ -96,33 +81,13 @@
       <p class="brand">Leaving Egypt</p>
       <p class="sub">Content admin — sign in to edit the website.</p>
 
-      <div class="card" id="password-card">
-        <h2>Password login</h2>
+      <div class="card">
         <div class="err" id="pw-err"></div>
         <form id="pw-form">
-          <label for="password">Editor password</label>
-          <input id="password" name="password" type="password" autocomplete="current-password" required />
+          <label for="password">Password</label>
+          <input id="password" name="password" type="password" autocomplete="current-password" required autofocus />
           <button type="submit">Sign in</button>
         </form>
-        <p class="hint">
-          Shared password for your team. Set once in Vercel as <code>CMS_PASSWORD</code> + <code>CMS_GITHUB_TOKEN</code>.
-        </p>
-      </div>
-
-      <div class="card">
-        <h2>Or paste a GitHub token</h2>
-        <div class="err" id="tok-err"></div>
-        <form id="tok-form">
-          <label for="token">Personal access token</label>
-          <input id="token" name="token" type="password" autocomplete="off" placeholder="github_pat_… or ghp_…" required />
-          <button type="submit">Sign in with token</button>
-        </form>
-        <p class="hint">
-          Create a token (repo access) here:
-          <a href="https://github.com/settings/personal-access-tokens" target="_blank" rel="noopener">GitHub → Fine-grained tokens</a>
-          · Resource owner: your account · Repository: <strong>leaving-egypt-standalone</strong> · Permissions: Contents Read and write.
-        </p>
-        <button type="button" class="secondary" id="signout" hidden>Sign out saved session</button>
       </div>
     </div>
 
@@ -131,24 +96,17 @@
     <script>
       const USER_KEY = 'sveltia-cms.user';
 
-      function showError(id, message) {
-        const el = document.getElementById(id);
+      function showError(message) {
+        const el = document.getElementById('pw-err');
         el.textContent = message;
         el.classList.add('show');
       }
 
-      function clearError(id) {
-        const el = document.getElementById(id);
-        el.textContent = '';
-        el.classList.remove('show');
-      }
-
       async function saveSessionAndLoadCms(token) {
-        const user = {
-          backendName: 'github',
-          token,
-        };
-        localStorage.setItem(USER_KEY, JSON.stringify(user));
+        localStorage.setItem(
+          USER_KEY,
+          JSON.stringify({ backendName: 'github', token })
+        );
         await loadCms();
       }
 
@@ -170,7 +128,11 @@
           const raw = localStorage.getItem(USER_KEY);
           if (!raw) return false;
           const user = JSON.parse(raw);
-          if (user?.backendName === 'github' && typeof user.token === 'string' && user.token.length > 10) {
+          if (
+            user?.backendName === 'github' &&
+            typeof user.token === 'string' &&
+            user.token.length > 10
+          ) {
             await loadCms();
             return true;
           }
@@ -182,7 +144,7 @@
 
       document.getElementById('pw-form').addEventListener('submit', async (event) => {
         event.preventDefault();
-        clearError('pw-err');
+        document.getElementById('pw-err').classList.remove('show');
         const password = document.getElementById('password').value;
         const btn = event.target.querySelector('button');
         btn.disabled = true;
@@ -195,54 +157,19 @@
           });
           const data = await res.json().catch(() => ({}));
           if (!res.ok) {
-            showError('pw-err', data.error || 'Login failed.');
+            showError(data.error || 'Wrong password.');
             return;
           }
           await saveSessionAndLoadCms(data.token);
         } catch {
-          showError('pw-err', 'Network error. Try again.');
+          showError('Network error. Try again.');
         } finally {
           btn.disabled = false;
           btn.textContent = 'Sign in';
         }
       });
 
-      document.getElementById('tok-form').addEventListener('submit', async (event) => {
-        event.preventDefault();
-        clearError('tok-err');
-        const token = document.getElementById('token').value.trim();
-        if (!token) {
-          showError('tok-err', 'Paste a token first.');
-          return;
-        }
-        // Quick sanity check against GitHub
-        try {
-          const res = await fetch('https://api.github.com/repos/Anshu-Chakrabarty/leaving-egypt-standalone', {
-            headers: {
-              Authorization: 'Bearer ' + token,
-              Accept: 'application/vnd.github+json',
-            },
-          });
-          if (!res.ok) {
-            showError('tok-err', 'Token cannot access this repo. Check permissions and try again.');
-            return;
-          }
-          await saveSessionAndLoadCms(token);
-        } catch {
-          showError('tok-err', 'Could not verify token. Check your connection.');
-        }
-      });
-
-      document.getElementById('signout').addEventListener('click', () => {
-        localStorage.removeItem(USER_KEY);
-        localStorage.removeItem('decap-cms-user');
-        localStorage.removeItem('netlify-cms-user');
-        location.reload();
-      });
-
-      tryExistingSession().then((ok) => {
-        if (!ok) document.getElementById('signout').hidden = false;
-      });
+      tryExistingSession();
     </script>
   </body>
 </html>
