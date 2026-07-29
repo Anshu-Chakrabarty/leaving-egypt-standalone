@@ -28,12 +28,22 @@ Saving in the CMS commits to GitHub → Vercel rebuilds → the live site update
 
 ### First-time CMS login (GitHub)
 
-1. Open `/admin` on the deployed site (or locally).
-2. Click **Sign in with GitHub** / **Sign in with Token**.
-3. **Quick start (solo/small team):** use a [GitHub Personal Access Token](https://github.com/settings/tokens) with `repo` scope (the CMS login screen links to the right settings).
-4. **Team-friendly login (recommended):** deploy [Sveltia CMS Authenticator](https://github.com/sveltia/sveltia-cms-auth) on Cloudflare Workers (free), then set `backend.base_url` in `public/admin/config.yml` to that Worker URL.
+**Option A — Team login (Login with GitHub)** — one-time setup:
 
-Invite teammates as **collaborators** on the GitHub repo so they can publish.
+1. Create a GitHub OAuth App: https://github.com/settings/applications/new  
+   - **Application name:** `Leaving Egypt CMS`  
+   - **Homepage URL:** `https://leaving-egypt-standalone.vercel.app`  
+   - **Authorization callback URL:** `https://leaving-egypt-standalone.vercel.app/api/callback`
+2. Generate a **Client Secret**, then in Vercel → Project → **Settings → Environment Variables** add:
+   - `GITHUB_CLIENT_ID` = Client ID  
+   - `GITHUB_CLIENT_SECRET` = Client Secret  
+   - `ALLOWED_DOMAINS` = `leaving-egypt-standalone.vercel.app` (add your custom domain later, comma-separated)
+3. Redeploy the Vercel project (Deployments → … → Redeploy).
+4. Open `/admin` → **Login with GitHub**.
+
+Invite teammates as **repo collaborators** so they can publish.
+
+**Option B — Quick solo login:** on `/admin`, use **Sign in with Token** and a GitHub [Personal Access Token](https://github.com/settings/tokens) with `repo` scope.
 
 ### Local CMS (no GitHub auth)
 
@@ -53,7 +63,7 @@ src/
     settings/site.json   CMS: site settings
     pages/*.json         CMS: SEO
     faq/items.json       CMS: FAQ
-    bodies/*.html        CMS: page bodies
+    bodies/*.md          CMS: page bodies
   pages/                 Astro routes
   styles/global.css      Single design system
 ```
