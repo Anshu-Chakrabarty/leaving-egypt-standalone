@@ -6,8 +6,11 @@ backend:
   repo: Anshu-Chakrabarty/leaving-egypt-standalone
   branch: main
   auth_methods: [token]
-  # Save/Publish commits to GitHub and triggers a Vercel deploy
   skip_ci: false
+
+# Simpler editor — Save/Publish is easier to find without the preview pane
+editor:
+  preview: false
 
 media_folder: public/assets/images/uploads
 public_folder: /assets/images/uploads

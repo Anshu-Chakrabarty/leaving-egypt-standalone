@@ -117,6 +117,15 @@
           return;
         }
         window.__CMS_LOADED = true;
+
+        const tip = document.createElement('div');
+        tip.id = 'save-tip';
+        tip.style.cssText =
+          'position:fixed;bottom:16px;left:50%;transform:translateX(-50%);z-index:99999;background:#2a2118;color:#fff;padding:10px 16px;border-radius:999px;font:600 14px/1.3 system-ui,sans-serif;box-shadow:0 8px 24px rgba(0,0,0,.25);';
+        tip.textContent = 'To save & deploy: press Ctrl+S (or click Save / Publish at the top)';
+        document.body.appendChild(tip);
+        setTimeout(() => tip.remove(), 12000);
+
         const script = document.createElement('script');
         script.src = 'https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js';
         script.type = 'module';
